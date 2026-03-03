@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code quality 
 
-### Jean Doe
+### Shao Ray
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sr-magicturtle.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/trumantong8.md)]
+[[github](http://github.com/sr-magicturtle)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
 ### Zhang Shuhan
 
