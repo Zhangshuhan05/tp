@@ -128,6 +128,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Viewing a person : `view`
+
+Shows the specified person.
+
+Format: `view INDEX`
+
+* Shows the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `view 2` shows the 2nd person in the address book.
+* `find Betsy` followed by `view 1` shows the 1st person in the results of the `find` command.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -198,3 +212,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**View** | `view INDEX`<br> e.g., `view 3`
