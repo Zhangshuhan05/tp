@@ -7,21 +7,20 @@ import java.util.Set;
 
 /**
  * Represents a Circle in the address book.
- * Guarantees: immutable.
+ * Guarantees: immutable; Circle is valid as declared in {@link #isValidCircleName(String)}
  */
 public class Circle {
 
-    public static final String MESSAGE_CONSTRAINTS = "Circle names can only be"
-        + "friend, prospect or lead (case-insensitive).";
-
-    private static final Set<String> ALLOWED_CIRCLES = Set.of("friend", "prospect", "lead");
+    public static final String MESSAGE_CONSTRAINTS = "Circle names can only be "
+            + "client, prospect or friend (case-insensitive).";
+    private static final Set<String> ALLOWED_CIRCLES = Set.of("client", "prospect", "friend");
 
     public final String circleName;
 
     /**
      * Constructs a {@code Circle}.
      *
-     * @param circleName A valid tag name.
+     * @param circleName A valid circle name.
      */
     public Circle(String circleName) {
         requireNonNull(circleName);
