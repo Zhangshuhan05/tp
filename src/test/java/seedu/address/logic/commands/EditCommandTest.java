@@ -37,7 +37,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person originalPerson = model.getFilteredPersonList().get(0);
+
+        Person editedPerson = new PersonBuilder(originalPerson)
+                .withName("Amy Bee")
+                .withPhone("99999999")
+                .withEmail("amy@example.com")
+                .withAddress("New Address")
+                .withTags("friend")
+                .build();
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

@@ -5,7 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,9 @@ public class TagRemoveCommandTest {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), updatedTags,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                personToEdit.getFollowUpDate(),
+                personToEdit.getNotes(),
+                personToEdit.getCircle());
         expectedModel.setPerson(personToEdit, editedPerson);
 
         TagRemoveCommand command = new TagRemoveCommand(existingTag, index);

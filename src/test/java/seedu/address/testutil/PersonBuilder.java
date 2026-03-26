@@ -109,6 +109,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Notes} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNotes(String notes) {
+        this.notes = Optional.of(notes);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Circle} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCircle(String circle) {
+        this.circle = Optional.of(circle);
+        return this;
+    }
+
+    /**
      * Builds and returns a {@code Person} with the current fields.
      *
      * @return a {@code Person} with the specified fields
