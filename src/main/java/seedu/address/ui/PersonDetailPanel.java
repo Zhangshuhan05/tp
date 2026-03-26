@@ -23,10 +23,6 @@ public class PersonDetailPanel extends UiPart<Region> {
     @FXML private Label followUpDate;
     @FXML private Label circle;
 
-    @FXML private HBox followUpRow;
-    @FXML private HBox notesRow;
-    @FXML private HBox circleRow;
-
     /**
      * Creates a {@code PersonDetailPanel} with the given {@code Person} to display.
      */
