@@ -37,8 +37,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private HBox followUpRow;
-    @FXML
     private HBox notesRow;
     @FXML
     private Label notes;
