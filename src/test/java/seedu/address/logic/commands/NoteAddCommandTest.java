@@ -92,7 +92,7 @@ public class NoteAddCommandTest {
         command.execute(model);
 
         Person result = model.getFilteredPersonList().get(0);
-        assertEquals(Optional.of(NOTE_STUB), result.getNotes());
+        assertEquals(Optional.of(new Note(NOTE_STUB)), result.getNotes());
     }
 
     @Test

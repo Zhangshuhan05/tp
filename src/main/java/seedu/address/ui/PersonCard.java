@@ -100,7 +100,7 @@ public class PersonCard extends UiPart<Region> {
         }, () -> setShown(circleBadge, false));
 
         person.getNotes().ifPresentOrElse(n -> {
-            String trimmed = n.trim();
+            String trimmed = n.toString().trim();
             if (trimmed.isEmpty()) {
                 setShown(notesRow, false);
                 return;
