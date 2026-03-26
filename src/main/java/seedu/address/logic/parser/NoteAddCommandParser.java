@@ -44,8 +44,8 @@ public class NoteAddCommandParser implements Parser<NoteAddCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteAddCommand.MESSAGE_USAGE));
         }
 
-        // Validate word count of the new input alone
-        // (combined total is validated inside NoteAddCommand.execute())
+        // Validate the word count of the new input is note greater than 200
+        // Validating the combined total word count is inside NoteAddCommand.execute()
         if (noteText.split("\\s+").length > Note.MAX_WORD_COUNT) {
             throw new ParseException(Note.MESSAGE_WORD_LIMIT_EXCEEDED);
         }

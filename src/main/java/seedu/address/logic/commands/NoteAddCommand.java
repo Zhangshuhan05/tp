@@ -57,9 +57,6 @@ public class NoteAddCommand extends Command {
         if (index.getZeroBased() < 0 || index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
-        if (note.toString().trim().isEmpty()) {
-            throw new CommandException("Note cannot be empty.");
-        }
         if (note.toString().trim().split("\\s+").length > 200) {
             throw new CommandException(MESSAGE_WORD_LIMIT_EXCEEDED);
         }
