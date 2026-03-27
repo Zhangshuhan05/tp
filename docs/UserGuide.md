@@ -3,17 +3,17 @@ layout: page
 title: User Guide
 ---
 
-# Friends And Money (FAM) 
-Keeping in touch with your friends and clients should be **easy and efficient**. 
+# Friends And Money (FAM)
+Keeping in touch with your friends and clients should be **easy and efficient**.
 
-FAM is a **desktop contact management app** built for student financial advisors. It helps you track your relationships, 
+FAM is a **desktop contact management app** built for student financial advisors. It helps you track your relationships,
 log interactions and schedule follow-ups in one place.
 
-FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type fast, you can manage your contacts **significantly faster** with FAM than with traditional apps. 
+FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type fast, you can manage your contacts **significantly faster** with FAM than with traditional apps.
 
-A **Graphical User Interface (GUI)** is provided too, so that you can have the best of both worlds. 
+A **Graphical User Interface (GUI)** is provided too, so that you can have the best of both worlds.
 
-### Table Of Contents 
+### Table Of Contents
 * [Quick start](#quick-start)
 * [Features](#features)
     * [Help](#viewing-help--help)
@@ -48,19 +48,19 @@ A **Graphical User Interface (GUI)** is provided too, so that you can have the b
 
 3. Copy the `.jar` file to a folder you would like to use as the _home folder_ to store your address book.
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, 
+4. Open a command terminal, `cd` into the folder you put the `.jar` file in,
 and run `java -jar fam.jar` to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. 
+5. Type a command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-   * `help` : Opens the help window. 
-   
+   * `help` : Opens the help window.
+
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : 
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` :
    Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
@@ -91,11 +91,11 @@ and run `java -jar fam.jar` to run the application.<br>
 * Parameters can be in any order.<br>
   e.g. `n/NAME p/PHONE_NUMBER` is the same as `p/PHONE_NUMBER n/NAME`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
 will be ignored.<br>
   e.g. `help 123` will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands 
+* If you are using a PDF version of this document, be careful when copying and pasting commands
 that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -190,7 +190,7 @@ Deletes the specified contact from the address book.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the number shown beside your contact's name. 
+* The index refers to the number shown beside your contact's name.
 * The index **must be a positive integer** (e.g. 1, 2, 3, ...) and be within the valid range of contacts.
 * **Confirmation message** will be shown before deletion. You will need to click `OK` to confirm the deletion.
 
@@ -239,7 +239,7 @@ Format: `note INDEX note/NOTE`
 * The new note will be appended to existing notes of the person.
 * When viewing a person, each note will be shown in a new line.
 
-Examples:  
+Examples:
 * `note 1 note/Family of four, looking for family coverage` adds the note `Family of four, looking for family coverage` to the 1st person in the list.
 
 
@@ -258,7 +258,7 @@ Examples:
 
 ### Add a circle to a person : `circleadd`
 
-Adds a circle to an existing person in the address book. 
+Adds a circle to an existing person in the address book.
 Circle here referring to the type of relationship user have with the contact.
 
 Format: `circleadd INDEX c/CIRCLE`
