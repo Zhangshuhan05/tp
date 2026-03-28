@@ -10,11 +10,12 @@ start
 
 if () then ([invalid format])
     :Shows invalid command format parse exception;
-    else ()
+    else ([else])
     if () then ([else])
     :Note gets added to person;
+    :save to storage;
     :Shows note add success string;
-    else ([more than 200 words])
+    else ([total notes is more than 200 words])
         :Shows word limit exceeded parse exception;
     endif
 endif
