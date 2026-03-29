@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TagAddCommandParser" as TagAddCommandParser LOGIC_COLOR
+participant "t:TagAddCommand" as TagAddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "s:Storage" as Storage STORAGE_COLOR_T1
+end box
+
+[-> LogicManager : execute("tagadd 1 t/friends")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("tagadd 1 t/friends")
+activate AddressBookParser
+
+create TagAddCommandParser
+AddressBookParser -> TagAddCommandParser
+activate TagAddCommandParser
+
+TagAddCommandParser --> AddressBookParser
+deactivate TagAddCommandParser
+
+AddressBookParser -> TagAddCommandParser : parse("1 t/friends")
+activate TagAddCommandParser
+
+create TagAddCommand
+TagAddCommandParser -> TagAddCommand : new TagAddCommand(tag, index)
+activate TagAddCommand
+
+TagAddCommand --> TagAddCommandParser : t
+deactivate TagAddCommand
+
+TagAddCommandParser --> AddressBookParser : t
+deactivate TagAddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagAddCommandParser -[hidden]-> AddressBookParser
+destroy TagAddCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+LogicManager -> TagAddCommand : execute(m)
+activate TagAddCommand
+
+TagAddCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> TagAddCommand : lastShownList
+deactivate Model
+
+TagAddCommand -> Model : setPerson(personAtIndex, editedPerson)
+activate Model
+
+Model --> TagAddCommand :
+deactivate Model
+
+create CommandResult
+TagAddCommand -> CommandResult : CommandResult(successMessage)
+activate CommandResult
+
+CommandResult --> TagAddCommand :
+deactivate CommandResult
+
+TagAddCommand --> LogicManager : r
+deactivate TagAddCommand
+
+LogicManager -> Storage : saveAddressBook(model.getAddressBook())
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

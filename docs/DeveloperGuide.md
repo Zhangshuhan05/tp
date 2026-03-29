@@ -162,6 +162,16 @@ The following sequence diagram shows how a `NoteAddCommand` is executed through 
 ![NoteAddSequnceDiagram](images/NoteAddSequenceDiagram.png)
 
 
+### Tag add feature
+
+Users can add tags to contacts for categorisation, using the `tagadd` command. The implementation of this feature is shown in the sequence diagram below.
+
+#### The sequence diagram
+![Tag Add Sequence Diagram](images/TagAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagAddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
