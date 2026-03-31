@@ -1,16 +1,16 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.PersonCard.setShown;
+
+import java.time.LocalDate;
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
-
-import java.time.LocalDate;
-import java.util.Comparator;
-
-import static seedu.address.ui.PersonCard.setShown;
 
 /**
  * An UI component that displays information of a {@code Person} in View mode.
@@ -74,18 +74,19 @@ public class PersonDetailPanel extends UiPart<Region> {
             setShown(circleBadge, true);
 
             switch (circle) {
-                case "client":
-                    circleBadge.getStyleClass().add("circle-client");
-                    break;
-                case "prospect":
-                    circleBadge.getStyleClass().add("circle-prospect");
-                    break;
-                case "friend":
-                    circleBadge.getStyleClass().add("circle-friend");
-                    break;
-                default:
-                    break;
+            case "client":
+                circleBadge.getStyleClass().add("circle-client");
+                break;
+            case "prospect":
+                circleBadge.getStyleClass().add("circle-prospect");
+                break;
+            case "friend":
+                circleBadge.getStyleClass().add("circle-friend");
+                break;
+            default:
+                break;
             }
         }, () -> setShown(circleBadge, false));
     }
 }
+
