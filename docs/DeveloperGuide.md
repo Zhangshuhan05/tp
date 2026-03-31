@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -117,19 +117,18 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagramv3.png" width="450" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object). Each `Person` stores core contact details such as `Name`, `Phone`, `Address`, and `Email`, together with additional fields such as `Tag`, `Note`, `FollowUpDate`, and `Circle`.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'; for example, the UI can be bound to this list so that it automatically updates when the data in the list changes.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* does not depend on any of the other three components, as the `Model` represents data entities of the domain and should make sense on its own without depending on the other components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It keeps a `Tag` list in the `AddressBook`, which each `Person` references. This allows the `AddressBook` to maintain a single `Tag` object for each unique tag, instead of each `Person` storing separate `Tag` objects. In our current implementation, a `Person` may also store additional fields such as `Note`, `FollowUpDate`, and `Circle`.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagramV3.png" width="450" />
 
 </div>
 
@@ -154,6 +153,24 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Note Add feature
+#### Implementation
+
+The following sequence diagram shows how a `NoteAddCommand` is executed through the `Logic` component:
+
+![NoteAddSequnceDiagram](images/NoteAddSequenceDiagram.png)
+
+
+### Tag add feature
+
+Users can add tags to contacts for categorisation, using the `tagadd` command. The implementation of this feature is shown in the sequence diagram below.
+
+#### The sequence diagram
+![Tag Add Sequence Diagram](images/TagAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagAddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -461,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 * **AddressBook**: The system that stores and manages contacts
 * **Contact**: An entry representing a person, containing fields such as name, phone number, and email
 * **Index**: The number shown in a listed result that identifies a specific contact in that displayed list

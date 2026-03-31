@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane detailPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -121,6 +125,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        detailPanelPlaceholder.setMouseTransparent(true);
+        detailPanelPlaceholder.setPickOnBounds(false);
+
     }
 
     /**
@@ -163,6 +171,30 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleViewPerson() {
+        if (logic.getFilteredPersonList().isEmpty()) {
+            return;
+        }
+        Person person = logic.getFilteredPersonList().get(0);
+        detailPanelPlaceholder.getChildren().clear();
+        PersonDetailPanel detailPanel = new PersonDetailPanel(person);
+        detailPanelPlaceholder.getChildren().add(detailPanel.getRoot());
+
+        personListPanelPlaceholder.setVisible(false);
+        personListPanelPlaceholder.setManaged(false);
+        detailPanelPlaceholder.setVisible(true);
+        detailPanelPlaceholder.setManaged(true);
+    }
+
+    private void clearDetailPanel() {
+        detailPanelPlaceholder.getChildren().clear();
+
+        personListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setManaged(true);
+        detailPanelPlaceholder.setVisible(false);
+        detailPanelPlaceholder.setManaged(false);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -186,6 +218,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isViewMode()) {
+                handleViewPerson();
+            } else {
+                clearDetailPanel();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -194,3 +232,4 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 }
+

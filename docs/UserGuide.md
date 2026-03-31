@@ -3,15 +3,17 @@ layout: page
 title: User Guide
 ---
 
-# Friends And Money (FAM) 
-Keeping in touch with your friends and clients should be **easy and efficient**. 
+# Friends And Money (FAM)
+Keeping in touch with your friends and clients should be **easy and efficient**.
 
-FAM is a **desktop contact management app** built for student financial advisors. It helps you track your relationships, 
+FAM is a **desktop contact management app** built for student financial advisors. It helps you track your relationships,
 log interactions and schedule follow-ups in one place.
 
-FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type fast, you can manage your contacts **significantly faster** with FAM than with traditional apps. A **Graphical User Interface (GUI)** is provided too, so that you can have the best of both worlds. 
+FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type fast, you can manage your contacts **significantly faster** with FAM than with traditional apps.
 
-### Table Of Contents 
+A **Graphical User Interface (GUI)** is provided too, so that you can have the best of both worlds.
+
+### Table Of Contents
 * [Quick start](#quick-start)
 * [Features](#features)
     * [Help](#viewing-help--help)
@@ -28,7 +30,7 @@ FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type 
     * [Circle Add](#add-a-circle-to-a-person--circleadd)
     * [Circle Remove](#removing-a-circle-to-a-person--circlerm)
     * [Circle Filter](#filtering-circle--circlefilter)
-    * [Follow Up](#setting-follow-up-date--followup)
+    * [Follow Up Date](#setting-follow-up-date--followup)
     * [Clear](#clearing-all-entries--clear)
     * [Exit](#exiting-the-program--exit)
 * [FAQ](#faq)
@@ -46,19 +48,19 @@ FAM is optimized for use via a **Command Line Interface (CLI)**. So if you type 
 
 3. Copy the `.jar` file to a folder you would like to use as the _home folder_ to store your address book.
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, 
+4. Open a command terminal, `cd` into the folder you put the `.jar` file in,
 and run `java -jar fam.jar` to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. 
+5. Type a command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-   * `help` : Opens the help window. 
-   
+   * `help` : Opens the help window.
+
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : 
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` :
    Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
@@ -89,11 +91,11 @@ and run `java -jar fam.jar` to run the application.<br>
 * Parameters can be in any order.<br>
   e.g. `n/NAME p/PHONE_NUMBER` is the same as `p/PHONE_NUMBER n/NAME`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
 will be ignored.<br>
   e.g. `help 123` will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands 
+* If you are using a PDF version of this document, be careful when copying and pasting commands
 that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -162,8 +164,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find david irfan` returns `David Li`, `Irfan Ibrahim`<br><br>
+  ![result for 'find david irfan'](images/findDavidIrfanResult.png)
 
 
 ### Viewing a person : `view`
@@ -188,7 +190,7 @@ Deletes the specified contact from the address book.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the number shown beside your contact's name. 
+* The index refers to the number shown beside your contact's name.
 * The index **must be a positive integer** (e.g. 1, 2, 3, ...) and be within the valid range of contacts.
 * **Confirmation message** will be shown before deletion. You will need to click `OK` to confirm the deletion.
 
@@ -237,7 +239,7 @@ Format: `note INDEX note/NOTE`
 * The new note will be appended to existing notes of the person.
 * When viewing a person, each note will be shown in a new line.
 
-Examples:  
+Examples:
 * `note 1 note/Family of four, looking for family coverage` adds the note `Family of four, looking for family coverage` to the 1st person in the list.
 
 
@@ -256,7 +258,7 @@ Examples:
 
 ### Add a circle to a person : `circleadd`
 
-Adds a circle to an existing person in the address book. 
+Adds a circle to an existing person in the address book.
 Circle here referring to the type of relationship user have with the contact.
 
 Format: `circleadd INDEX c/CIRCLE`
@@ -273,7 +275,7 @@ Examples:
 * `circleadd 3 c/family` will lead to an error message as `family` is not an accepted circle type.
 
 
-### Removing a circle to a person : `circlerm`
+### Remove a circle from a person : `circlerm`
 
 Removes a circle from an existing person in the address book.
 Circle here referring to the type of relationship user have with the contact.
@@ -290,7 +292,7 @@ Examples:
 * `circlerm 1` removes the circle from the 1st person in the address book, regardless of the circle.
 
 
-### Filtering Circle : `circlefilter`
+### Filter for a circle : `circlefilter`
 
 Filters and shows all contacts in the address book with the specified circle.
 Circle here referring to the type of relationship user have with the contact.
@@ -309,7 +311,7 @@ Examples:
 * `circlefilter client` shows all contacts with the circle `client` in the address book, in their index order in the address book.
 * `circlefilter family` will lead to an error message as `family` is not an accepted circle type.
 
-### Setting Follow-Up Date : followup
+### Setting follow-up date : `followup`
 
 Sets (or updates) a follow-up date for a contact.
 A follow-up date helps you track when you should check in with a contact.
@@ -394,7 +396,7 @@ Action | Format, Examples
 **View** | `view INDEX`<br> e.g., `view 3`
 **Tag Add** | `tagadd INDEX t/TAG`<br> e.g., `tagadd 1 t/friend`
 **Tag Remove** | `tagrm INDEX t/TAG`<br> e.g., `tagrm 1 t/friend`
-**Note Add** | `note INDEX: NOTE`<br> e.g., `note 1: looking for student coverage`
+**Note Add** | `note INDEX note/NOTE`<br> e.g., `note 1 note/looking for student coverage`
 **Note Clear** | `noteclear INDEX`<br> e.g., `noteclear 1`
 **Circle Add** | `circleadd INDEX c/CIRCLE`<br> e.g., `circleadd 1 c/client`
 **Circle Remove** | `circlerm INDEX`<br> e.g., `circlerm 1`

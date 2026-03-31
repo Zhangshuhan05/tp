@@ -57,6 +57,7 @@ public class NoteAddCommand extends Command {
         if (index.getZeroBased() < 0 || index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
+
         if (note.toString().trim().split("\\s+").length > 200) {
             throw new CommandException(MESSAGE_WORD_LIMIT_EXCEEDED);
         }
@@ -66,9 +67,11 @@ public class NoteAddCommand extends Command {
         String updatedValue = existingValue.isEmpty()
                 ? note.toString().trim()
                 : existingValue + "\n" + note.toString().trim();
+
         if (updatedValue.split("\\s+").length > Note.MAX_WORD_COUNT) {
             throw new CommandException(Note.MESSAGE_WORD_LIMIT_EXCEEDED);
         }
+
         Person editedPerson = new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),

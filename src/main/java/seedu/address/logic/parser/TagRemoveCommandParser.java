@@ -9,20 +9,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new TagRemoveCommand object.
+ * Parses input arguments and creates a new TagRemoveCommand object
  */
 public class TagRemoveCommandParser implements Parser<TagRemoveCommand> {
 
     /**
-     * Parses the given arguments string and returns a TagRemoveCommand.
-     *
-     * Expected format: INDEX t/TAG
-     *
-     * @param args the input arguments string
-     * @return a TagRemoveCommand object containing the parsed index and tag
-     * @throws ParseException if the input format is invalid
+     * Parses the given {@code String} of arguments in the context of the TagRemoveCommand
+     * and returns a TagRemoveCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
      */
-    @Override
     public TagRemoveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 

@@ -12,6 +12,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
+    maven { url 'https://repo1.maven.org/maven2/' }
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }

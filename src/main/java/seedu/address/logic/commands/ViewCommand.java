@@ -72,7 +72,8 @@ public class ViewCommand extends Command {
         Predicate<Person> predicate = p -> p.equals(personToView);
         model.updateFilteredPersonList(predicate);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToView)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName()),
+                false, false, true);
     }
 
     @Override

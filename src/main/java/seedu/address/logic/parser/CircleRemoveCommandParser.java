@@ -39,8 +39,7 @@ public class CircleRemoveCommandParser implements Parser<CircleRemoveCommand> {
             Index index = ParserUtil.parseIndex(trimmedArgs);
             return new CircleRemoveCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                CircleRemoveCommand.MESSAGE_USAGE), pe);
+            throw pe;
         }
     }
 }

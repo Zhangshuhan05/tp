@@ -1,66 +1,59 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.PersonCard.setShown;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Person} in View mode.
  */
-public class PersonCard extends UiPart<Region> {
+public class PersonDetailPanel extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PersonDetailPanel.fxml";
 
-    public final Person person;
-
-    @FXML
-    private HBox cardPane;
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label phone;
-    @FXML
-    private Label address;
     @FXML
     private Label email;
     @FXML
-    private Label followUpDate;
+    private Label address;
     @FXML
     private FlowPane tags;
     @FXML
-    private HBox notesRow;
-    @FXML
     private Label notes;
+    @FXML
+    private Label followUpDate;
     @FXML
     private Label circleBadge;
 
     /**
-     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
+     * Creates a {@code PersonDetailPanel} with the given {@code Person} to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonDetailPanel(Person person) {
         super(FXML);
-        this.person = person;
-        id.setText(displayedIndex + ".");
+
         name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        email.setText(person.getEmail().value);
+        address.setText(person.getAddress().value);
 
-        String addressValue = person.getAddress().value;
-        String emailValue = person.getEmail().value;
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        phone.setText("Phone: " + person.getPhone().value);
-        address.setText("Address: " + (addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue));
-        email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
-
-        followUpDate.getStyleClass().add("follow-up-date-value");
-        followUpDate.getStyleClass().removeAll("follow-up-soon", "follow-up-overdue");
+        notes.setText(person.getNotes()
+                .map(Note::toString)
+                .orElse("-"));
 
         if (person.getFollowUpDate().isPresent()) {
             LocalDate date = person.getFollowUpDate().get().value;
@@ -74,8 +67,6 @@ public class PersonCard extends UiPart<Region> {
         } else {
             followUpDate.setText("-");
         }
-
-        circleBadge.getStyleClass().removeAll("circle-client", "circle-prospect", "circle-friend");
 
         person.getCircle().ifPresentOrElse(c -> {
             String circle = c.trim().toLowerCase();
@@ -96,15 +87,6 @@ public class PersonCard extends UiPart<Region> {
                 break;
             }
         }, () -> setShown(circleBadge, false));
-
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-    public static void setShown(Node node, boolean shown) {
-        node.setVisible(shown);
-        node.setManaged(shown);
-    }
-
 }
+

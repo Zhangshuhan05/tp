@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="10">
+    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+    <HBox spacing="8">
+        <Label fx:id="name" styleClass="person-name-label"/>
+        <Label fx:id = "circleBadge"
+               text = "client"
+               styleClass= "circle-badge"
+               visible="false" managed="false"/>
+    </HBox>
+
+    <FlowPane fx:id="tags" alignment="TOP_LEFT" hgap="10" vgap="10" prefWrapLength="220" prefWidth="220" />
+
+    <HBox spacing="8">
+        <Label text="Phone:" StyleClass="view-title"/>
+        <Label fx:id="phone" StyleClass="view-text"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Label text="Email:" StyleClass="view-title"/>
+        <Label fx:id="email" StyleClass="view-email-text"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Label text="Address:" StyleClass="view-title"/>
+        <Label fx:id="address" StyleClass="view-text"/>
+    </HBox>
+
+    <HBox fx:id="notesRow" spacing="8">
+        <Label text="Notes:" StyleClass="view-title"/>
+        <Label fx:id="notes" StyleClass="view-text" wrapText="true"/>
+    </HBox>
+
+    <HBox fx:id="followUpRow" spacing="8">
+        <Label text="Follow Up:" StyleClass="view-title"/>
+        <Label fx:id="followUpDate" styleClass="view-text"/>
+    </HBox>
+
+</VBox>
+

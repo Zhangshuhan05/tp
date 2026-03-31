@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":NoteAddCommandParser" as NoteAddCommandParser LOGIC_COLOR
+participant "n:NoteAddCommand" as NoteAddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "s:Storage" as Storage STORAGE_COLOR_T1
+end box
+
+[-> LogicManager : execute("note 1 /note Looking for family coverage")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("note 1 /note Looking for family coverage")
+activate AddressBookParser
+
+create NoteAddCommandParser
+AddressBookParser -> NoteAddCommandParser : NoteAddCommandParser()
+activate NoteAddCommandParser
+
+NoteAddCommandParser --> AddressBookParser
+deactivate NoteAddCommandParser
+
+AddressBookParser -> NoteAddCommandParser : parse("1 /note Looking for family coverage")
+activate NoteAddCommandParser
+
+' no need to do argumentTokenizer
+create NoteAddCommand
+NoteAddCommandParser -> NoteAddCommand : NoteAddCommand(1, note)
+activate NoteAddCommand
+
+NoteAddCommand --> NoteAddCommandParser
+deactivate NoteAddCommand
+
+NoteAddCommandParser --> AddressBookParser : nCommand
+deactivate NoteAddCommandParser
+
+' Hidden arrow to position the destroy marker below the end of the activation bar.
+NoteAddCommandParser -[hidden]-> AddressBookParser
+destroy NoteAddCommandParser
+
+AddressBookParser --> LogicManager : nCommand
+deactivate AddressBookParser
+
+LogicManager -> NoteAddCommand : execute(m)
+activate NoteAddCommand
+
+NoteAddCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> NoteAddCommand : lastShownList
+deactivate Model
+
+NoteAddCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> NoteAddCommand
+deactivate Model
+
+create CommandResult
+NoteAddCommand -> CommandResult : CommandResult("Added note to Person: John Doe")
+activate CommandResult
+
+CommandResult --> NoteAddCommand
+deactivate CommandResult
+
+NoteAddCommand --> LogicManager : r
+deactivate NoteAddCommand
+
+LogicManager -> Storage : saveAddressBook(model.getAddressBook())
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<-- LogicManager : r
+deactivate LogicManager
+@enduml
