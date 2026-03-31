@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -18,6 +20,7 @@ public class PersonDetailPanel extends UiPart<Region> {
     @FXML private Label email;
     @FXML private Label address;
 
+    @FXML private Label tags;
     @FXML private Label notes;
     @FXML private Label followUpDate;
     @FXML private Label circle;
@@ -32,6 +35,14 @@ public class PersonDetailPanel extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         address.setText(person.getAddress().value);
+
+        String tagText = person.getTags().isEmpty()
+                ? "-"
+                : person.getTags().stream()
+                .map(tag -> tag.tagName)
+                .sorted()
+                .collect(Collectors.joining(", "));
+        tags.setText(tagText);
 
         notes.setText(person.getNotes()
                 .map(Note::toString)
