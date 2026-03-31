@@ -11,39 +11,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new TagAddCommand object.
- *
- * This parser is responsible for parsing user input to extract an index and a tag,
- * which are then used to create a TagAddCommand. The parser expects the input
- * to contain an index (in the preamble) and exactly one tag specified with the
- * PREFIX_TAG prefix.
- *
- * <p>Expected input format: INDEX t/TAG
- * where INDEX is a positive integer representing the position of the person in the address book,
- * and TAG is the name of the tag to be added.
- *
- * <p>Validation:
- * <ul>
- *   <li>Ensures exactly one tag is provided (no more, no less)</li>
- *   <li>Validates that the index is a valid positive integer</li>
- *   <li>Validates that the tag is valid according to Tag constraints</li>
- * </ul>
- *
- * @throws ParseException if the input format is invalid, if no tag is provided,
- *                        if more than one tag is provided, or if the index is invalid
+ * Parses input arguments and creates a new TagAddCommand object
  */
 public class TagAddCommandParser implements Parser<TagAddCommand> {
 
     /**
-     * Parses the given arguments string and returns a TagAddCommand.
-     *
-     * <p>This method tokenizes the input arguments to separate the index from the tag prefix.
-     * It validates that exactly one tag is provided and that the index is valid.
-     *
-     * @param args the input arguments string containing an index and a tag with PREFIX_TAG prefix
-     * @return a TagAddCommand object containing the parsed tag and index
-     * @throws ParseException if the arguments format is invalid, if no tag is provided,
-     *                        if multiple tags are provided, or if the index cannot be parsed
+     * Parses the given {@code String} of arguments in the context of the TagAddCommand
+     * and returns a TagAddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
      */
     public TagAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
