@@ -61,7 +61,7 @@ public class PersonCard extends UiPart<Region> {
 
         email.getStyleClass().removeAll("person-email-link", "person-field-empty");
 
-        boolean hasEmail = !emailValue.equals("missing@email.empty") && !emailValue.isBlank();
+        boolean hasEmail = !emailValue.equals("missing@email.empty");
 
         if (hasEmail) {
             email.setText(emailValue);
