@@ -55,7 +55,7 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle.getCircleName())
+            java.util.Optional.of(circle)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
@@ -84,7 +84,7 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle.getCircleName())
+            java.util.Optional.of(circle)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
@@ -110,7 +110,7 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle.getCircleName())
+            java.util.Optional.of(circle)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
@@ -138,7 +138,7 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle.getCircleName())
+            java.util.Optional.of(circle)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
@@ -195,7 +195,7 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(firstCircle.getCircleName())
+            java.util.Optional.of(firstCircle)
         );
         model.setPerson(personAtIndex, personWithCircle);
 
