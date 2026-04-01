@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_confirmed_success() {
+    public void execute_emptyAddressBookConfirmed_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -23,7 +23,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyAddressBook_cancelled_success() {
+    public void execute_emptyAddressBookCancelled_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -33,7 +33,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_confirmed_success() {
+    public void execute_nonEmptyAddressBookConfirmed_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
@@ -44,7 +44,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_cancelled_success() {
+    public void execute_nonEmptyAddressBookCancelled_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
