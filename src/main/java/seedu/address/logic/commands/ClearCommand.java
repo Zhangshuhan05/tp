@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.ui.ConfirmationInterface;
 import seedu.address.ui.ConfirmationDialog;
+import seedu.address.ui.ConfirmationInterface;
 
 /**
  * Clears the address book.
@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     private final ConfirmationInterface confirmationInterface = ConfirmationDialog::showConfirmation;
 
     @Override
-    public CommandResult execute(Model model){
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         if (!confirmationInterface.confirm(
