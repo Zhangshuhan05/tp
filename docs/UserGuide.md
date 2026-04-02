@@ -140,7 +140,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [d/FOLLOWUPDATE] [c/CIRCLE] ​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -148,10 +148,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
-* You cannot edit a person's circle using the `edit` command. To edit a person's circle label, you will need to use the [`circleadd`](#add-a-circle-to-a-person--circleadd) or [`circlerm`](#removing-a-circle-to-a-person--circlerm) command.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com c/friend` Edits the phone number, email address and circle of the 1st 
+person to be `91234567`, `johndoe@example.com` and `friend` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -172,7 +172,6 @@ Examples:
 * `find david irfan` returns `David Li`, `Irfan Ibrahim`<br><br>
   ![result for 'find david irfan'](images/findDavidIrfanResult.png)
 
-
 ### Viewing a person : `view`
 
 Shows the specified person.
@@ -181,12 +180,24 @@ Format: `view INDEX`
 
 * Shows the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `view 2` shows the 2nd person in the address book.
 * `find Betsy` followed by `view 1` shows the 1st person in the results of the `find` command.
 
+### View Mode
+
+After running `view`, the app enters **View Mode**, displaying the full details of the selected contact.
+
+While in View Mode:
+* The displayed contact is always shown at **index 1** in the list
+* Any command that takes an index (e.g. `edit`, `delete`, `note`) must use **index 1** to operate on the displayed 
+contact
+* Commands that will exit View Mode: `add`, `delete`, `list`, `find`, `remind`, `clear`
+* Run `list` to exit View Mode and return to the full contact list
+
+> 💡 **Tip:** To view a different contact, run `list` first, then `view` on the desired index.
 
 ### Deleting a person : `delete`
 
