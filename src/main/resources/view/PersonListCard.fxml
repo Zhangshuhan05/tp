@@ -36,8 +36,19 @@
     <VBox alignment="CENTER_LEFT" spacing="12">
       <Label fx:id="phone" text="Phone" styleClass="person-detail-label" />
       <HBox alignment="CENTER_LEFT" spacing="0">
-        <Label text="Email: " styleClass="person-detail-label" />
-        <Label fx:id="email" text="email@example.com" styleClass="person-email-label" />
+        <Label text="Email: " styleClass="person-detail-label">
+          <minWidth>
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+
+        <Label fx:id="email"
+               text="email@example.com"
+               styleClass="person-email-label"
+               wrapText="false"
+               textOverrun="ELLIPSIS"
+               HBox.hgrow="ALWAYS"
+               minWidth="0"/>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="0">
         <Label text="Follow up: " styleClass="person-detail-label" />

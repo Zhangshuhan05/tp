@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.NoteAddCommand.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.person.Note.MESSAGE_CONSTRAINTS;
 
@@ -22,19 +23,24 @@ public class NoteAddCommandParser implements Parser<NoteAddCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE);
 
-        // Validate presence of index
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteAddCommand.MESSAGE_USAGE), pe);
-        }
-
-        // Validate note/ prefix is present
+        // 1. Check if note/ prefix is present FIRST — format validation takes priority
         if (argMultimap.getValue(PREFIX_NOTE).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteAddCommand.MESSAGE_USAGE));
+        }
+
+        // 2. Now validate the index
+        String preamble = argMultimap.getPreamble().trim();
+        int rawInt;
+        try {
+            rawInt = Integer.parseInt(preamble);
+        } catch (NumberFormatException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteAddCommand.MESSAGE_USAGE));
+        }
+
+        if (rawInt <= 0) {
+            throw new ParseException(MESSAGE_INVALID_INDEX); // index is present but out of range
         }
 
         String noteText = argMultimap.getValue(PREFIX_NOTE).get().trim();
@@ -43,6 +49,8 @@ public class NoteAddCommandParser implements Parser<NoteAddCommand> {
         if (noteText.isEmpty()) {
             throw new ParseException(MESSAGE_CONSTRAINTS);
         }
+        
+        Index index = Index.fromOneBased(rawInt);
 
         // Validate the word count of the new input is <= MAX_CHAR_COUNT
         // Validating the combined total word count is inside NoteAddCommand.execute()

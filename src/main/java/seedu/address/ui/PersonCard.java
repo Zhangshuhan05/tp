@@ -59,6 +59,18 @@ public class PersonCard extends UiPart<Region> {
         address.setText("Address: " + (addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue));
         email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
 
+        email.getStyleClass().removeAll("person-email-link", "person-field-empty");
+
+        boolean hasEmail = !emailValue.equals("missing@email.empty") && !emailValue.isBlank();
+
+        if (hasEmail) {
+            email.setText(emailValue);
+            email.getStyleClass().add("person-email-link"); // underline only when real email
+        } else {
+            email.setText("-");
+            email.getStyleClass().add("person-field-empty"); // grey, not underlined
+        }
+
         followUpDate.getStyleClass().add("follow-up-date-value");
         followUpDate.getStyleClass().removeAll("follow-up-soon", "follow-up-overdue");
 
@@ -99,10 +111,11 @@ public class PersonCard extends UiPart<Region> {
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
+                .limit(5)
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    private static void setShown(Node node, boolean shown) {
+    public static void setShown(Node node, boolean shown) {
         node.setVisible(shown);
         node.setManaged(shown);
     }

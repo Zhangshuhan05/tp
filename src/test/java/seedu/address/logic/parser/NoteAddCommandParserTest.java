@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.NoteAddCommand.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.person.Note.MAX_CHAR_COUNT;
@@ -61,9 +62,13 @@ public class NoteAddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidIndex_throwsParseException() {
-        assertParseFailure(parser, "0 note/Some note", INVALID_FORMAT_MESSAGE);
-        assertParseFailure(parser, "-1 note/Some note", INVALID_FORMAT_MESSAGE);
+    public void parse_nonPositiveIndex_throwsParseException() {
+        assertParseFailure(parser, "0 note/Some note", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-1 note/Some note", MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_nonNumericIndex_throwsParseException() {
         assertParseFailure(parser, "abc note/Some note", INVALID_FORMAT_MESSAGE);
     }
 

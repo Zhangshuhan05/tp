@@ -139,7 +139,19 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 15px;
     -fx-text-fill: #0b63ce;
+    -fx-underline: false;
+    -fx-text-overrun: ellipsis;
+}
+
+/* Only apply underline when it is a real email */
+.person-email-link {
     -fx-underline: true;
+}
+
+/* “Empty field” styling (same as other '-') */
+.person-field-empty {
+    -fx-text-fill: #7b8a8f;
+    -fx-underline: false;
 }
 
 #tags {
@@ -198,4 +210,23 @@
     -fx-alignment: CENTER_LEFT;
     -fx-text-alignment: LEFT;
     -fx-text-overrun: ellipsis;
+}
+
+/* View-specific styles */
+.view-text {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+}
+
+.view-title {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.view-email-text {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+    -fx-text-fill: #0b63ce;
+    -fx-underline: true;
 }

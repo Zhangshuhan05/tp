@@ -29,7 +29,12 @@
 
     <HBox spacing="8">
         <Label text="Address:" style="-fx-font-weight: bold;"/>
-        <Label fx:id="address"/>
+        <Label fx:id="address" wrapText="true"/>
+    </HBox>
+
+    <HBox fx:id="tagsRow" spacing="8">
+        <Label text="Tags:" style="-fx-font-weight: bold;"/>
+        <Label fx:id="tags" wrapText="true"/>
     </HBox>
 
     <HBox fx:id="notesRow" spacing="8">
