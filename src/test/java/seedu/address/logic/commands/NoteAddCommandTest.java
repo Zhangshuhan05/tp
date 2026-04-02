@@ -33,7 +33,7 @@ public class NoteAddCommandTest {
         NoteAddCommand command = new NoteAddCommand(Index.fromOneBased(1), new Note(NOTE_STUB));
 
         String existingNote = personToEdit.getNotes().map(Note::toString).orElse("");
-        String expectedNote = existingNote.isEmpty() ? NOTE_STUB : existingNote + "\n" + NOTE_STUB;
+        String expectedNote = existingNote.isEmpty() ? NOTE_STUB : existingNote + " | " + NOTE_STUB;
 
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -73,7 +73,7 @@ public class NoteAddCommandTest {
         command.execute(model);
 
         Person result = model.getFilteredPersonList().get(0);
-        String expectedCombined = NOTE_STUB + "\n" + NOTE_STUB_2;
+        String expectedCombined = NOTE_STUB + " | " + NOTE_STUB_2;
         assertEquals(Optional.of(new Note(expectedCombined)), result.getNotes());
     }
 
