@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.PersonCard.setShown;
+
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
@@ -69,23 +72,23 @@ public class PersonDetailPanel extends UiPart<Region> {
         }
 
         person.getCircle().ifPresentOrElse(c -> {
-            String circle = c.getCircleName().trim().toLowerCase();
-            circleBadge.setText(circle);
-            setShown(circleBadge, true);
+            String circ = c.getCircleName().trim().toLowerCase();
+            circle.setText(circ);
+            setShown(circle, true);
 
-            switch (circle) {
+            switch (circ) {
             case "client":
-                circleBadge.getStyleClass().add("circle-client");
+                circle.getStyleClass().add("circle-client");
                 break;
             case "prospect":
-                circleBadge.getStyleClass().add("circle-prospect");
+                circle.getStyleClass().add("circle-prospect");
                 break;
             case "friend":
-                circleBadge.getStyleClass().add("circle-friend");
+                circle.getStyleClass().add("circle-friend");
                 break;
             default:
                 break;
             }
-        }, () -> setShown(circleBadge, false));
+        }, () -> setShown(circle, false));
     }
 }
