@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.TagRemoveCommandParser.MESSAGE_REMOVE_EXCESSIVE_TAGS;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +39,7 @@ public class TagRemoveCommandParserTest {
     public void parse_multipleTags_failure() {
         TagRemoveCommandParser parser = new TagRemoveCommandParser();
         assertParseFailure(parser, "1 t/friend t/classmate",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagRemoveCommand.MESSAGE_USAGE));
+                MESSAGE_REMOVE_EXCESSIVE_TAGS);
     }
 
     @Test

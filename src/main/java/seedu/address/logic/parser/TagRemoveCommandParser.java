@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  */
 public class TagRemoveCommandParser implements Parser<TagRemoveCommand> {
 
-    private static final String MESSAGE_REMOVE_EXCESSIVE_TAGS = "Only 1 tag can be removed at a time.";
+    public static final String MESSAGE_REMOVE_EXCESSIVE_TAGS = "Only 1 tag can be removed at a time.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the TagRemoveCommand

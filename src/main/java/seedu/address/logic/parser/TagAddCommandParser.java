@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  */
 public class TagAddCommandParser implements Parser<TagAddCommand> {
 
-    private static final String MESSAGE_ADD_EXCESSIVE_TAGS = "Only 1 tag can be added at a time.";
+    public static final String MESSAGE_ADD_EXCESSIVE_TAGS = "Only 1 tag can be added at a time.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the TagAddCommand
