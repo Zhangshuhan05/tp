@@ -58,8 +58,8 @@ public class PersonCard extends UiPart<Region> {
         String emailValue = person.getEmail().value;
 
         phone.setText("Phone: " + person.getPhone().value);
-        address.setText("Address: " + (addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue));
-        email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
+        address.setText("Address: " + (person.isDefaultAddress() ? "-" : addressValue));
+        email.setText(person.isDefaultEmail() ? "-" : emailValue);
 
         email.getStyleClass().removeAll("person-email-link", "person-field-empty");
 
