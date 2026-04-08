@@ -260,14 +260,14 @@ Notes that exceed 1000 characters (including newline separators) will be rejecte
 </div>
 
 * The 1000-character limit also applied for the total length of notes for each person. This is to ensure readability and prevent excessively long notes.
-* After adding the first note, additional notes will be appended to existing notes of the person.
-* Each added note is separated by a newline, which also counts toward the 1000-character limit.
+* After adding the first note, subsequent notes will be appended to existing notes with a pipe ` | `which also counts toward the 1000-character limit.
+* All text after `note/` will be treated as content for the note, including spaces and slashes.
 * Blank notes (i.e. `note/` without any text after it) will not be added.
-* When viewing a person, each note will be shown in a new line.
+* Notes will only show up after running `view`.
 
 Examples:
 * `note 1 note/Family of four, looking for family coverage` adds the note `Family of four, looking for family coverage` to the 1st person in the list.
-
+* `note 1 note/A note/B note/C` adds the note `A note/B note/C` to the 1st person in the list. 
 
 ### Clear a person's notes : `noteclear`
 
