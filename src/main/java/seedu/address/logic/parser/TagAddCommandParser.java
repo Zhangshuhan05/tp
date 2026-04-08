@@ -24,15 +24,30 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
     public TagAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
+        // If preamble is empty, or t/ is not found,
+        // throw error
         if (argMultimap.getPreamble().trim().isEmpty() || !argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
         }
 
+        // if more than 1 t/ is found,
+        // throw error
         if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
             throw new ParseException(MESSAGE_ADD_EXCESSIVE_TAGS);
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble().trim());
+        // Check index is a numerical value
+        // If not, throw error
+        String preamble = argMultimap.getPreamble().trim();
+        int tempIndex;
+        try {
+            tempIndex = Integer.parseInt(preamble);
+        } catch (NumberFormatException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
+        }
+
+        Index index = Index.fromOneBased(tempIndex);
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
         return new TagAddCommand(tag, index);
