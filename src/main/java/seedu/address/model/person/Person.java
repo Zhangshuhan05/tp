@@ -79,26 +79,14 @@ public class Person {
      * Check if Email is DEFAULT_EMAIL
      */
     public boolean isDefaultEmail() {
-        boolean result = false;
-
-        if (this.email.toString() == Email.DEFAULT_EMAIL) {
-            result = true;
-        }
-
-        return result;
+        return this.email.toString().equals(Email.DEFAULT_EMAIL);
     }
 
     /**
      * Check if Address is DEFAULT_ADDRESS
      */
     public boolean isDefaultAddress() {
-        boolean result = false;
-
-        if (this.address.toString() == Address.DEFAULT_ADDRESS) {
-            result = true;
-        }
-
-        return result;
+        return this.address.toString().equals(Address.DEFAULT_ADDRESS);
     }
 
     /**
