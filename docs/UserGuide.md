@@ -79,7 +79,7 @@ proceeding to the detailed feature descriptions below.
 <div markdown="span" class="alert alert-primary">
 
 **Tip #2:** Read the [Notes on Command Format](#features) before diving into individual features, it explains things 
-like optional fields, parameters, and command shortcuts that will make using the app much easier!
+like optional fields and command parameters that will make using the app much easier!
 
 </div>
 
@@ -169,7 +169,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [d/FOLLOWUP
 <div markdown="span" class="alert alert-warning">
 
 **Warning:** Editing tags will replace all existing tags. Make sure to include all the tags you want the person to have 
-when using `edit`.
+when using `edit`.<br>
 
 **Example:**
 A contact initially has the tags `friend` and `colleague`. After you run `edit 1 t/friend t/cafe`, only the tags `friend` and `cafe` will be displayed.
