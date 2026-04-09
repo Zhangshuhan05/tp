@@ -54,16 +54,7 @@ public class CircleRemoveCommand extends Command {
             throw new CommandException(MESSAGE_CIRCLE_PERSON_FAILURE);
         }
 
-        Person editedPerson = new Person(
-            personAtIndex.getName(),
-            personAtIndex.getPhone(),
-            personAtIndex.getEmail(),
-            personAtIndex.getAddress(),
-            personAtIndex.getTags(),
-            personAtIndex.getFollowUpDate(),
-            personAtIndex.getNotes(),
-            Optional.empty()
-        );
+        Person editedPerson = personAtIndex.removeCircle();
 
         model.setPerson(personAtIndex, editedPerson);
         return new CommandResult(String.format(MESSAGE_CIRCLE_PERSON_SUCCESS, editedPerson.getName()));

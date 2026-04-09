@@ -64,16 +64,7 @@ public class CircleAddCommand extends Command {
             throw new CommandException(MESSAGE_CIRCLE_PERSON_FAILURE);
         }
 
-        Person editedPerson = new Person(
-            personAtIndex.getName(),
-            personAtIndex.getPhone(),
-            personAtIndex.getEmail(),
-            personAtIndex.getAddress(),
-            personAtIndex.getTags(),
-            personAtIndex.getFollowUpDate(),
-            personAtIndex.getNotes(),
-            Optional.of(circle)
-        );
+        Person editedPerson = personAtIndex.addCircle(circle);
 
         model.setPerson(personAtIndex, editedPerson);
         logger.fine("Circle added: " + circle.getCircleName() + " to person: " + editedPerson.getName());

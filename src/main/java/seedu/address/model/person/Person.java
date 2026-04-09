@@ -125,6 +125,18 @@ public class Person {
         return tags.contains(tag);
     }
 
+    public Person addCircle(Circle circle) {
+        return new Person(name, phone, email, address, tags, followUpDate, notes, Optional.ofNullable(circle));
+    }
+
+    public Person removeCircle() {
+        return new Person(name, phone, email, address, tags, followUpDate, notes, Optional.empty());
+    }
+
+    public boolean hasCircle() {
+        return circle.isPresent();
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
