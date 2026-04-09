@@ -188,8 +188,8 @@ in the sequence diagram below.
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
-After `ViewCommand` executes, the app enters **View Mode**. `MainWindow` sets `isInViewMode = true` and
-calls `handleViewPerson()` to display the contact's full details. While in View Mode, the contact is always shown at index 1. Running `add`, `list`, `delete`, `clear`, `find`, or `remind` exits View Mode and clears the detail panel. All other commands (e.g. `edit`, `note`, `tag`) keep the app in View Mode and refresh the detail panel with the latest contact details.
+After `ViewCommand` executes, the app enters **View Mode**. `MainWindow` sets `isInViewMode = true` and 
+calls `handleViewPerson()` to display the contact's full details. While in View Mode, the contact is always shown at index 1. Running `add`, `list`, `delete`, `clear`, `find`, or `remind` exits View Mode and clears the detail panel. All other commands (e.g. `edit`, `note`, `followup`) keep the app in View Mode and refresh the detail panel with the latest contact details.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -308,7 +308,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * wants safe deletion to avoid accidental loss
 
-**Value proposition**: AddressBook helps student financial advisors maintain and retrieve contacts quickly via keyboard-first commands, so they can follow up and manage relationships without relying on messy notes or slow UI workflows.
+**Value proposition**: FAM helps student financial advisors maintain and retrieve contacts quickly via keyboard-first commands, so they can follow up and manage relationships without relying on messy notes or slow UI workflows.
 
 ---
 
@@ -344,18 +344,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FAM` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a contact with tags**
 
 **MSS**
 
 1.  User requests to add a contact with required details (e.g., name, phone).
-2.  AddressBook requests any missing required fields (if any).
+2.  FAM requests any missing required fields (if any).
 3.  User provides missing fields (if any).
-4.  AddressBook creates the contact and shows a success message.
+4.  FAM creates the contact and shows a success message.
 5.  User requests to add one or more tags to the newly added contact.
-6.  AddressBook adds the tags and shows the updated contact.
+6.  FAM adds the tags and shows the updated contact.
 
     Use case ends.
 
@@ -363,13 +363,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User input is invalid (e.g., invalid phone/email format).
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. FAM shows an error message.
 
       Use case resumes at step 1.
 
 * 4a. A duplicate contact is detected (same name and phone number).
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. FAM shows an error message.
 
       Use case ends.
 
@@ -380,11 +380,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find contacts using a name keyword.
-2.  AddressBook shows a list of matching contacts.
+2.  FAM shows a list of matching contacts.
 3.  User requests to view a specific contact from the list by index.
-4.  AddressBook shows the full contact details.
+4.  FAM shows the full contact details.
 5.  User requests to edit one or more fields of the contact.
-6.  AddressBook updates the contact and shows the updated contact.
+6.  FAM updates the contact and shows the updated contact.
 
     Use case ends.
 
@@ -396,13 +396,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FAM shows an error message.
 
       Use case resumes at step 2.
 
 * 5a. The edited value is invalid (e.g., invalid email).
 
-    * 5a1. AddressBook shows an error message.
+    * 5a1. FAM shows an error message.
 
       Use case resumes at step 4.
 
@@ -413,11 +413,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts.
-2.  AddressBook shows a list of contacts.
+2.  FAM shows a list of contacts.
 3.  User requests to delete a specific contact in the list by index.
-4.  AddressBook asks for confirmation to delete the contact.
+4.  FAM asks for confirmation to delete the contact.
 5.  User confirms the deletion.
-6.  AddressBook deletes the contact and shows a success message.
+6.  FAM deletes the contact and shows a success message.
 
     Use case ends.
 
@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FAM shows an error message.
 
       Use case resumes at step 2.
 
@@ -447,11 +447,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find contacts using a name keyword.
-2.  AddressBook shows a list of matching contacts.
+2.  FAM shows a list of matching contacts.
 3.  User requests to view a specific contact from the list by index.
-4.  AddressBook shows the full contact details including tags.
+4.  FAM shows the full contact details including tags.
 5.  User requests to remove a tag from the contact.
-6.  AddressBook removes the tag and shows the updated contact.
+6.  FAM removes the tag and shows the updated contact.
 
     Use case ends.
 
@@ -459,23 +459,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User already knows the index of the contact to untag.
 
   1a1. User requests to remove a tag from the contact by index.
-  1a2. AddressBook removes the tag and shows the updated contact.
+  1a2. FAM removes the tag and shows the updated contact.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FAM shows an error message.
 
       Use case resumes at step 2.
 
 * 5a. The tag does not exist on the contact.
 
-    * 5a1. AddressBook shows an error message.
+    * 5a1. FAM shows an error message.
 
       Use case resumes at step 4.
-
-*{More to be added}*
 
 ---
 
@@ -503,13 +501,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
-* **AddressBook**: The system that stores and manages contacts
+* **FAM**: The system that stores and manages contacts
 * **Contact**: An entry representing a person, containing fields such as name, phone number, and email
 * **Index**: The number shown in a listed result that identifies a specific contact in that displayed list
 * **Keyword**: A search term used to find matching contacts (e.g., partial name match)
 * **Tag**: A short label attached to a contact for categorisation
 * **Confirmation**: A user action required to proceed with a destructive operation (e.g., delete)
-* **Command**: A text instruction typed by the user to perform an operation in AddressBook
+* **Command**: A text instruction typed by the user to perform an operation in FAM
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -536,8 +534,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -552,13 +548,3 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
