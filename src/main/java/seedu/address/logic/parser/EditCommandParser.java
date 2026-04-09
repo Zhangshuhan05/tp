@@ -33,6 +33,10 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        // Check for invalid prefixes
+        validatePrefixes(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_FOLLOW_UP_DATE, PREFIX_CIRCLE);
@@ -94,6 +98,30 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Validates that all prefixes in the arguments string are valid prefixes.
+     * Throws ParseException if an invalid prefix is found.
+     */
+    private void validatePrefixes(String argsString) throws ParseException {
+        String validPrefixes = "n/p/e/a/t/d/c/";
+
+        // Find all potential prefixes (pattern: space + letter + /)
+        for (int i = 1; i < argsString.length(); i++) {
+            if (Character.isWhitespace(argsString.charAt(i - 1))
+                    && i + 1 < argsString.length()
+                    && argsString.charAt(i + 1) == '/') {
+                char prefixChar = argsString.charAt(i);
+                if (Character.isLetter(prefixChar)) {
+                    String potentialPrefix = prefixChar + "/";
+                    if (!validPrefixes.contains(potentialPrefix)) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                EditCommand.MESSAGE_USAGE));
+                    }
+                }
+            }
+        }
     }
 
 }

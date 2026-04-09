@@ -91,6 +91,12 @@ public class EditCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+
+        // valid prefix followed by invalid prefix
+        assertParseFailure(parser, "1 t/friend j/invalid", MESSAGE_INVALID_FORMAT);
+
+        // valid prefix followed by invalid prefix with more characters
+        assertParseFailure(parser, "1 p/12345678 h/whatsthat", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
