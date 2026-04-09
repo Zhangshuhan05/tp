@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalTags.CLASSMATE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -55,7 +56,7 @@ public class TagAddCommandTest {
         TagAddCommand command = new TagAddCommand(outOfBoundIndex, CLASSMATE);
 
         assertThrows(CommandException.class,
-                TagAddCommand.MESSAGE_INVALID_PERSON, () -> command.execute(model));
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> command.execute(model));
     }
 
     @Test

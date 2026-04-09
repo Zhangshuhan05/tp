@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.TagRemoveCommandParser.MESSAGE_REMOVE_EXCESSIVE_TAGS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -60,7 +60,8 @@ public class TagRemoveCommandParserTest {
 
     @Test
     public void parse_extraPreamble_failure() {
-        assertParseFailure(parser, "1 extra t/friend", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1 extra t/friend",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagRemoveCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -93,19 +94,25 @@ public class TagRemoveCommandParserTest {
     }
 
     @Test
-    public void parse_invalidIndexZero_failure() {
+    public void parse_invalidIndex_failure() {
+        assertParseFailure(parser, "0 t/friend", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
 
-        assertParseFailure(parser, "0 t/friend", MESSAGE_INVALID_INDEX);
+    @Test
+    public void parse_nonNumericalIndex_failure() {
+        assertParseFailure(parser, "abc t/friend",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagRemoveCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidIndexNegative_failure() {
-        assertParseFailure(parser, "-1 t/friend", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-1 t/friend", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidIndexNonNumeric_failure() {
-        assertParseFailure(parser, "abc t/friend", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "abc t/friend",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagRemoveCommand.MESSAGE_USAGE));
     }
 
     @Test

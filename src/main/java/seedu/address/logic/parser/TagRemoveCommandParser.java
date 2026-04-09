@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
@@ -32,7 +33,23 @@ public class TagRemoveCommandParser implements Parser<TagRemoveCommand> {
             throw new ParseException(MESSAGE_REMOVE_EXCESSIVE_TAGS);
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble().trim());
+        // Check index is a numerical value
+        // If not, throw error
+        String preamble = argMultimap.getPreamble().trim();
+        int tempIndex;
+        try {
+            tempIndex = Integer.parseInt(preamble);
+        } catch (NumberFormatException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagRemoveCommand.MESSAGE_USAGE));
+        }
+
+        // index is present but out of range
+        if (tempIndex <= 0) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Index index = Index.fromOneBased(tempIndex);
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
         return new TagRemoveCommand(index, tag);
