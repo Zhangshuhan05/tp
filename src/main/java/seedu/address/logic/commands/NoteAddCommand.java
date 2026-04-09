@@ -6,7 +6,6 @@ import static seedu.address.model.person.Note.MAX_CHAR_COUNT;
 import static seedu.address.model.person.Note.MESSAGE_CHAR_LIMIT_EXCEEDED;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;

@@ -137,6 +137,13 @@ public class Person {
         return circle.isPresent();
     }
 
+    /**
+     * Returns a new {@code Person} with the specified {@code note} added.
+     * If a note already exists, the new note is appended with " | " as separator.
+     *
+     * @param note the {@code Note} to add
+     * @return a new {@code Person} instance with the added note
+     */
     public Person addNote(Note note) {
         String base = notes.map(Note::toString).orElse("");
         String incoming = note.toString().trim();

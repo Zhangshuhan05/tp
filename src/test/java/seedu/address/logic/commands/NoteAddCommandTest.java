@@ -121,9 +121,12 @@ public class NoteAddCommandTest {
 
         // Adding 501 characters would push total to 1001 - should fail
         String newNote = "w".repeat(501).trim();
-        NoteAddCommand command = new NoteAddCommand(Index.fromOneBased(1), new Note(newNote));
+        //NoteAddCommand command = new NoteAddCommand(Index.fromOneBased(1), new Note(newNote));
 
-        assertThrows(CommandException.class, () -> command.execute(model));
+        assertThrows(CommandException.class, () -> {
+            NoteAddCommand command = new NoteAddCommand(Index.fromOneBased(1), new Note(newNote));
+            command.execute(model);
+        });
     }
     @Test
     public void equals() {
