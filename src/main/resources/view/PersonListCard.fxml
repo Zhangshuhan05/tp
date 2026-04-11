@@ -32,7 +32,8 @@
              styleClass= "circle-badge"
              visible="false" managed="false"
              wrapText="false"
-             minWidth="50"/>
+             alignment="CENTER"
+             minWidth="70"/>
     </HBox>
 
     <VBox alignment="CENTER_LEFT" spacing="12">
