@@ -299,7 +299,7 @@ Format: `note INDEX note/NOTE`
 
 Examples:
 * `note 1 note/Family of four, looking for family coverage` adds `Family of four, looking for family coverage` to the 1st person in the list.
-* `note 2 note/A note/B note/C` adds `A note/B note/C` to the 2nd person in the list.
+* `note 2 note/A note/B note/C` adds `note/A note/B note/C` to the 2nd person in the list.
 
 ### Clear a person's notes : `noteclear`
 
@@ -512,3 +512,4 @@ Action | Format, Examples
 **Follow Up** | `followup INDEX d/DATE` <br> e.g. `followup 1 d/2026-04-01`
 **Follow Up Clear** | `followupclear INDEX` <br> e.g. `followupclear 1`
 **Remind** | `remind DAYS` <br> e.g. `remind 3`
+**Exit** | `exit`

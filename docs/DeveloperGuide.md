@@ -273,12 +273,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -337,9 +331,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                      | see usage instructions/help               | refer to commands when I forget how to use the app     |
 | `*`      | student financial advisor | log interactions with a contact           | track engagement history                               |
 | `*`      | student financial advisor | set follow-up dates / reminders           | avoid forgetting to check in                           |
-
-*{More to be added}*
-
 ---
 
 ### Use cases
@@ -477,6 +468,162 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 4.
 
 ---
+**Use case: Add circle to a contact**
+
+**MSS**
+
+1. User requests to add circle to a contact with required details (e.g. friend).
+2. FAM adds the circle, shows the updated contact and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User already has a circle.
+  * 1a1. FAM shows an error message.
+
+      Use case ends
+* 1b. User input is invalid (e.g. invalid circle name, invalid index).
+  * 1b1. FAM shows an error message.
+
+      Use case ends
+
+---
+**Use case: Remove a circle from a contact**
+
+**MSS**
+1.  User requests to remove circle from a contact with required details (e.g. index).
+2. FAM removes the circle, shows the updated contact and shows a success message.
+
+   Use case ends.
+
+**Extensions**
+* 1a. User does not have a circle.
+    * 1a1. FAM shows an error message.
+
+      Use case ends
+
+* 1b. User input is invalid (e.g. invalid index).
+    * 1b1. FAM shows an error message.
+
+      Use case ends
+
+
+
+---
+**Use case: Add followup to a contact**
+
+**MSS**
+
+1. User requests to add followup to a contact with required details (e.g. followup date, index).
+2. FAM adds the followup, shows the updated contact and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User input is invalid (e.g. invalid date format, invalid index).
+    * 1a1. FAM shows an error message.
+
+      Use case ends
+
+* 1b. User already has a followup date.
+
+    Use case resumes at step 2.
+
+* 1c. User inputs a followup date that has passed.
+
+    Use case resumes at step 2 with warning message added.
+
+---
+**Use case: Remind upcoming followups**
+
+**MSS**
+
+1. User requests to see upcoming followups with required details (e.g. number of days).
+2. FAM shows a list of contacts with upcoming followups within the number of days specified.
+
+**Extensions**
+
+* 1a. User does not specify the number of days.
+    * 1a1. FAM shows an error message.
+
+      Use case ends
+
+
+* 1b. User input is invalid (e.g. non-zero unsigned integer).
+
+    * 1b1. FAM shows an error message.
+
+      Use case ends.
+---
+
+**Use case: Remove followup from a contact**
+
+**MSS**
+
+1. User requests to remove followup to a contact with required details (e.g. index).
+2. FAM removes the followup, shows the updated contact and shows a success message.
+
+**Extensions**
+* 1a. User input is invalid (e.g. non-zero unsigned integer).
+
+    * 1a1. FAM shows an error message.
+
+      Use case ends.
+
+* 1b. User does not have a followup date.
+  * 1b1. FAM shows an error message.
+
+    Use case ends.
+
+---
+**Use case: Add notes to a contact**
+
+**MSS**
+
+1. User requests to add notes to a contact with required details (e.g. note content, index).
+2. FAM adds the notes, shows the updated contact and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User input is invalid (e.g. invalid index).
+  * 1a1. FAM shows an error message.
+    
+    Use case ends.
+
+* 1b. User already has notes with total characters at 1000 or under. 
+    
+    Use case resumes at step 2.
+
+* 1c. User inputs notes that are too long (e.g. more than 1000 characters).
+  * 1c1. FAM shows an error message.
+
+       Use case ends.
+---
+**Use case: Remove notes from a contact**
+
+**MSS**
+
+1. User requests to remove notes from a contact with required details (e.g. index).
+2. FAM removes the notes, shows the updated contact and shows a success message. 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User input is invalid (e.g. invalid index).
+  * 1a1. FAM shows an error message.
+
+    Use case ends.
+
+* 1b. User does not have notes.
+  * 1b1. FAM shows no note to clear message.
+  
+    Use case ends.
+
+---
+
+
 
 ### Non-Functional Requirements
 
@@ -495,13 +642,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. The Developer Guide (DG) and User Guide (UG) should be PDF-friendly (e.g., no expandable panels, embedded videos, or animated GIFs).
 14. The product should not require installation of any third-party software by the user. Any third-party libraries/services used should be free/open-source (or approved services), permissively licensed, and pre-approved by the teaching team.gh to allow new commands/features to be added without major rewrites.
 
-*{More to be added}*
-
 ---
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Mainstream OS**: Windows, Linux, and OS-X platforms
 * **FAM**: The system that stores and manages contacts
 * **Contact**: An entry representing a person, containing fields such as name, phone number, and email
 * **Index**: The number shown in a listed result that identifies a specific contact in that displayed list
