@@ -449,7 +449,8 @@ If you wish to view or edit your data, you can access the file at:
 
 ### Editing the data file
 
-FAM's data is saved automatically as a JSON file at `[JAR file location]/data/addressbook.json`. Advanced users are 
+FAM's data is saved automatically as a JSON file at:<br>
+`[JAR file location]/data/addressbook.json` <br>Advanced users are 
 welcome to update data directly by editing that data file.
 
 **Caution:** If the file format is invalid, or if any fields contain values in an invalid format, FAM will load with an 
