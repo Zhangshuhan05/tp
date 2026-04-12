@@ -77,7 +77,13 @@ deactivate CommandResult
 NoteAddCommand --> LogicManager : r
 deactivate NoteAddCommand
 
-LogicManager -> Storage : saveAddressBook(model.getAddressBook())
+LogicManager -> Model : getAddressBook()
+activate Model
+
+Model --> LogicManager : a
+deactivate Model
+
+LogicManager -> Storage : saveAddressBook(a)
 activate Storage
 
 Storage --> LogicManager
