@@ -18,10 +18,10 @@ box Storage STORAGE_COLOR_T1
 participant "s:Storage" as Storage STORAGE_COLOR_T1
 end box
 
-[-> LogicManager : execute("note 1 /note Looking for family coverage")
+[-> LogicManager : execute("note 1 note/Looking for family coverage")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("note 1 /note Looking for family coverage")
+LogicManager -> AddressBookParser : parseCommand("note 1 note/Looking for family coverage")
 activate AddressBookParser
 
 create NoteAddCommandParser
@@ -31,7 +31,7 @@ activate NoteAddCommandParser
 NoteAddCommandParser --> AddressBookParser
 deactivate NoteAddCommandParser
 
-AddressBookParser -> NoteAddCommandParser : parse("1 /note Looking for family coverage")
+AddressBookParser -> NoteAddCommandParser : parse("1 note/Looking for family coverage")
 activate NoteAddCommandParser
 
 ' no need to do argumentTokenizer
