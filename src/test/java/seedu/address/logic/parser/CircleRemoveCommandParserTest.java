@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_OOR_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -64,10 +65,13 @@ public class CircleRemoveCommandParserTest {
 
         // leading plus sign
         assertParseFailure(parser, "+1", Messages.MESSAGE_OOR_INDEX);
+
+        // very large index (beyond integer range)
+        assertParseFailure(parser, "99999999999999999999", MESSAGE_OOR_INDEX);
     }
 
     @Test
-    public void parse_nonNumericalIndexes_failure() {
+    public void parse_nonvalidIndexes_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CircleRemoveCommand.MESSAGE_USAGE);
         // non-integer index
         assertParseFailure(parser, "abc", expectedMessage);
@@ -79,9 +83,6 @@ public class CircleRemoveCommandParserTest {
         // decimal index
         assertParseFailure(parser, "1.5", expectedMessage);
         assertParseFailure(parser, "3.14", expectedMessage);
-
-        // very large index (beyond integer range)
-        assertParseFailure(parser, "99999999999999999999", expectedMessage);
     }
 
     @Test

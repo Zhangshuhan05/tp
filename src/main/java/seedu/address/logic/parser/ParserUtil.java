@@ -32,15 +32,18 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex, String usageMessage) throws ParseException {
         String trimmed = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmed)) {
-            // non-numeric → Invalid command format
-            // numeric but negative or too high → OOR error
-            try {
-                throw new ParseException(Messages.MESSAGE_OOR_INDEX);
-            } catch (NumberFormatException e) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
-            }
+
+        boolean isNumericFormat = trimmed.matches("^[+-]?\\d+$");
+
+        if (!isNumericFormat) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
         }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmed)) {
+            // Valid number but out of range (0, negative, or overflow)
+            throw new ParseException(Messages.MESSAGE_OOR_INDEX);
+        }
+
         return Index.fromOneBased(Integer.parseInt(trimmed));
     }
 

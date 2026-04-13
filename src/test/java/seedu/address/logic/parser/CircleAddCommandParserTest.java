@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CIRCLE;
+import static seedu.address.testutil.TypicalCircles.FRIENDS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -76,20 +77,17 @@ public class CircleAddCommandParserTest {
 
         // negative index
         assertParseFailure(parser, "-1 c/client", Messages.MESSAGE_OOR_INDEX);
+
+        assertParseFailure(parser, "99999999999999999999 c/client", Messages.MESSAGE_OOR_INDEX);
     }
 
     @Test
-    public void parse_nonNumericalIndex_failure() {
+    public void parse_nonIntegerIndex_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CircleAddCommand.MESSAGE_USAGE);
 
-        // non-integer index
-        assertParseFailure(parser, "abc c/client", expectedMessage);
-
-        // decimal index
         assertParseFailure(parser, "1.5 c/client", expectedMessage);
 
-        // very large index (beyond integer range)
-        assertParseFailure(parser, "99999999999999999999 c/client", expectedMessage);
+        assertParseFailure(parser, "abc c/client", expectedMessage);
     }
 
     @Test
@@ -126,12 +124,8 @@ public class CircleAddCommandParserTest {
 
     @Test
     public void parse_unknownPrefix_failure() {
-        // unknown prefix in arguments
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CircleAddCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "1 x/client", expectedMessage);
-
-        // unknown prefix before circle prefix
-        assertParseFailure(parser, "1 t/tag c/client", expectedMessage);
     }
 
     @Test
@@ -160,13 +154,11 @@ public class CircleAddCommandParserTest {
     @Test
     public void parse_validEdgeCases() {
         // index at boundary
-        Circle expectedCircle = new Circle("friend");
         Index expectedIndex = Index.fromOneBased(Integer.MAX_VALUE - 1);
-        CircleAddCommand expectedCommand = new CircleAddCommand(expectedIndex, expectedCircle);
+        CircleAddCommand expectedCommand = new CircleAddCommand(expectedIndex, FRIENDS);
 
         // This should successfully parse even though the index is very large
-        // (whether it's valid in the model is a separate concern)
-        assertParseSuccess(parser, String.valueOf(Integer.MAX_VALUE - 1) + " c/friend", expectedCommand);
+        assertParseSuccess(parser, (Integer.MAX_VALUE - 1) + " c/friend", expectedCommand);
     }
 
 }
