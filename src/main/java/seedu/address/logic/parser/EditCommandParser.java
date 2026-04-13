@@ -19,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,9 +35,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
-        // Check for invalid prefixes
-        validatePrefixes(args);
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
@@ -75,6 +74,21 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String emailInput = argMultimap.getValue(PREFIX_EMAIL).get().trim();
+            if (emailInput.equals(Email.DEFAULT_EMAIL)) {
+                throw new ParseException("This email address is reserved and cannot be used as input.");
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            String addressInput = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
+            if (addressInput.equals(Address.DEFAULT_ADDRESS)) {
+                throw new ParseException("This address value is reserved and cannot be used as input.");
+            }
         }
 
         return new EditCommand(index, editPersonDescriptor);

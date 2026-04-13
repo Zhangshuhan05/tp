@@ -44,9 +44,6 @@ public class NoteClearCommand extends Command {
         if (lastShownList == null) {
             throw new CommandException("Failed to retrieve person list.");
         }
-        if (lastShownList.isEmpty()) {
-            throw new CommandException("No persons available to clear notes from.");
-        }
         if (index.getZeroBased() < 0 || index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_OOR_INDEX);
         }

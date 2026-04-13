@@ -39,6 +39,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String emailInput = argMultimap.getValue(PREFIX_EMAIL).get().trim();
+            if (emailInput.equals(Email.DEFAULT_EMAIL)) {
+                throw new ParseException("This email address is reserved and cannot be used as input.");
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            String addressInput = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
+            if (addressInput.equals(Address.DEFAULT_ADDRESS)) {
+                throw new ParseException("This address value is reserved and cannot be used as input.");
+            }
+        }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());

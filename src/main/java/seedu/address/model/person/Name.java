@@ -10,13 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should contain at least one letter, and may only include letters (including "
+                    + "non-English characters), digits, spaces, hyphens, apostrophes, slashes, and periods. "
+                    + "It should not be blank.";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Must contain at least one Unicode letter (covers English, Chinese, accented chars, etc.)
+     * First character must be a letter or digit.
+     * Remaining characters may include letters, digits, spaces, hyphens, apostrophes, slashes, periods.
      */
-    public static final String VALIDATION_REGEX = "(?=.*\\p{Alpha})[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=.*\\p{L})[\\p{L}\\p{Digit}][\\p{L}\\p{Digit} '\\-./]*";
 
     public final String fullName;
 
@@ -67,7 +70,6 @@ public class Name {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Name)) {
             return false;
         }
@@ -80,5 +82,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }
