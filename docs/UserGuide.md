@@ -219,12 +219,11 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched. e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive, so `hans` will match `Hans`.
+* Keywords can be in any order, so `Hans Bo` will match `Bo Hans`.
+* Only full words are matched, so `Han` will not match `Hans`.
+* Contacts matching at least one keyword will be returned, so `find Hans Bo` will return both `Hans Gruber` and `Bo Yang`.
+* Only the name field is searched.
 
 Examples:
 * `find John` returns `john` and `John Doe`
