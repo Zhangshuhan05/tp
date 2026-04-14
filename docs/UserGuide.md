@@ -98,7 +98,7 @@ like optional fields and command parameters that will make using the app much ea
 
 * FAM commands must be typed exactly as shown. Any mistake in a command word will result in an `Unknown command` error. However, FAM will suggest the correct command if your input starts with the correct command word, regardless of capitalisation or spaces. For example, `aDd` or `a dd` or `addd` will trigger a `Did you mean: add?` suggestion.
 
-* Leading spaces before the command word are ignored, so `  add` will be treated the same as `add`.
+* Leading spaces before the command word are ignored, so ` add` will be treated the same as `add`.
 
 * Command words are case-sensitive.
 
@@ -179,7 +179,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [d/FOLLO
 * At least one of the optional fields must be provided.
 * If no fields are modified, the command will be rejected.
 * Existing values will be updated to the input values.
-* This command can be used to add a circle or a followup date if there isn't one yet.
+* **Note:** This command can be used to add a circle or a followup date if there isn't one yet.
 * Notes cannot be edited using the `edit` command, see [Note Add](#add-notes-to-a-person--note) and [Note Clear](#clear-a-persons-notes--noteclear) for notes management.
 * Refer to [Field Constraints Summary](#field-constraints-summary) for a summary of the field constraints.
 * After a successful edit, the app will return to the full contact list.
@@ -367,7 +367,7 @@ Format: `circleadd INDEX c/CIRCLE`
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 circle can be added at a time to 1 contact.
 * If the person already has a circle, the addition of the circle will not be allowed.
-* A circle can only be added via the `circleadd` and `edit` commands, but not the `add` command.
+* **Note:** A circle can only be added via the `circleadd` and `edit` commands, but not the `add` command.
 
 Examples:
 * `circleadd 1 c/client` adds the circle `client` to the 1st person in the address book.
@@ -405,7 +405,7 @@ Format: `circlefilter CIRCLE`
 
 * All contacts with the specified circle will be shown in their index order in the address book.
 * There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle is case-insensitive, but must be one of these 3 values. Any other value given to `circlefilter` will be rejected.
-* Note: Circles can only be filtered via the `circlefilter` command.
+* **Note:** Circles can only be filtered via the `circlefilter` command.
 :information_source: **Note:* Circles can only be filtered via the `circlefilter` command.
 
 <div markdown="span" class="alert alert-primary">
@@ -432,7 +432,7 @@ Format: `followup INDEX d/DATE`
 * Dates more than 5 years from today are allowed, but the app will show a warning after the date is set.
 * Dates in the next 3 days will be <u>**underlined and bolded**</u> to as a visual reminder.
   If a date has passed, its formatting will be updated when the app is restarted.
-* Note: A follow-up date can only be added via the `followup` and `edit` commands, but not the `add` command.
+* **Note:** A follow-up date can only be added via the `followup` and `edit` commands, but not the `add` command.
 
 Examples:
 * `followup 1 d/2026-04-01` sets the follow-up date of contact 1 to `2026-04-01`.
