@@ -9,7 +9,7 @@ Keeping in touch with your friends and clients should be **easy and efficient**.
 FAM is a **desktop contact management app** built for student financial advisors. It helps you track your relationships,
 log interactions, and schedule follow-ups in one place.
 
-FAM is optimized for use via a **Command Line Interface (CLI)**. So, if you type fast, you can manage your Contacts
+FAM is optimized for use via a **Command Line Interface (CLI)**. So, if you type fast, you can manage your contacts
 **significantly faster** with FAM than with traditional apps.
 
 A **Graphical User Interface (GUI)** is provided too, so that you can have the best of both worlds.
@@ -18,19 +18,19 @@ A **Graphical User Interface (GUI)** is provided too, so that you can have the b
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Help](#viewing-help--help)
-    * [Add](#adding-a-Contact-add)
-    * [List](#listing-all-Contacts--list)
-    * [Edit](#editing-a-Contact--edit)
-    * [Find](#locating-Contacts-by-name-find)
-    * [View](#viewing-a-Contact--view)
+    * [Add](#adding-a-contact-add)
+    * [List](#listing-all-contacts--list)
+    * [Edit](#editing-a-contact--edit)
+    * [Find](#locating-contacts-by-name-find)
+    * [View](#viewing-a-contact--view)
     * [View mode](#view-mode)
-    * [Delete](#deleting-a-Contact--delete)
+    * [Delete](#deleting-a-contact--delete)
     * [Tag Add](#adding-a-tag--tagadd)
     * [Tag Remove](#removing-a-tag--tagrm)
-    * [Note Add](#add-notes-to-a-Contact--note)
-    * [Note Clear](#clear-a-Contacts-notes--noteclear)
-    * [Circle Add](#add-a-circle-to-a-Contact--circleadd)
-    * [Circle Remove](#remove-a-circle-from-a-Contact--circlerm)
+    * [Note Add](#add-notes-to-a-contact--note)
+    * [Note Clear](#clear-a-contacts-notes--noteclear)
+    * [Circle Add](#add-a-circle-to-a-contact--circleadd)
+    * [Circle Remove](#remove-a-circle-from-a-contact--circlerm)
     * [Circle Filter](#filter-for-a-circle--circlefilter)
     * [Follow-Up Date](#setting-follow-up-date--followup)
     * [Clear Follow-Up Date](#clearing-a-follow-up-date--followupclear)
@@ -65,11 +65,11 @@ A **Graphical User Interface (GUI)** is provided too, so that you can have the b
    Some example commands you can try:
 
     * `help` : Opens the help window.
-    * `list` : Lists all Contacts.
+    * `list` : Lists all contacts.
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` :
       Adds a contact named `John Doe` to the address book.
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-    * `clear` : Deletes all Contacts. 
+    * `clear` : Deletes all contacts. 
     * `exit` : Exits the app.
 
 7. Refer to [Features](#features) for details of each command.
@@ -118,7 +118,7 @@ like optional fields and command parameters that will make using the app much ea
   will be ignored.
   e.g. `help 123` will be interpreted as `help`.
 
-* For commands that require an `INDEX`, the index refers to the number shown beside the contact in the displayed list. The index must be a positive integer (e.g. `1, 2, 3, ...`) and be within the valid range of the current displayed list of Contacts.
+* For commands that require an `INDEX`, the index refers to the number shown beside the contact in the displayed list. The index must be a positive integer (e.g. `1, 2, 3, ...`) and be within the valid range of the current displayed list of contacts.
 
 * In [View Mode](#view-mode), only the selected contact remains in the filtered list, so commands that require an `INDEX` should use `1`.
 
@@ -134,17 +134,17 @@ Opens the help window, which contains a link to the User Guide.
 
 Format: `help`
 
-### Adding a Contact: `add`
+### Adding a contact: `add`
 
-Adds a Contact to the address book.
+Adds a contact to the address book.
 
 * Minimum required fields: `n/NAME` and `p/PHONE_NUMBER`.
 * Name must start with a letter or digit, contain at least one letter, and only consist of alphanumeric characters, spaces or the following symbols: `-`, `'`, `.`, `/`, `(`, `)`. It cannot be blank.
-* Name does not have to be unique across Contacts.
+* Name does not have to be unique across contacts.
 * Phone number must be numeric, have at least 3 and at most 17 digits and cannot be blank.
-* Phone number and email must be unique across Contacts. If a duplicate phone number or email is detected, the contact will not be added.
+* Phone number and email must be unique across contacts. If a duplicate phone number or email is detected, the contact will not be added.
 * Email, address, and tag are optional. These values can be updated after the contact is created using the `edit` command.
-* Note can only be added via `note` after a contact is created. Refer to [Add notes to a Contact](#add-notes-to-a-Contact--note) for details.
+* Note can only be added via `note` after a contact is created. Refer to [Add notes to a contact](#add-notes-to-a-contact--note) for details.
 * Circle and follow-up can only be added `circleadd` and `followup` respectively. Alternatively, `edit` can be to add these fields after the contact is created.
 * Refer to [Field Constraints Summary](#field-constraints-summary) for a summary of the field constraints.
 
@@ -162,25 +162,25 @@ To prevent this, ensure all prefixes are valid and separated by spaces.
 
 </div>
 
-### Listing all Contacts : `list`
+### Listing all contacts : `list`
 
-Shows a list of all Contacts in the address book.
+Shows a list of all contacts in the address book.
 
 Format: `list`
 
-### Editing a Contact : `edit`
+### Editing a contact : `edit`
 
-Edits an existing Contact in the address book.
+Edits an existing contact in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [d/FOLLOWUPDATE] [c/CIRCLE]`
 
-* Edits the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of Contacts.
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * At least one of the optional fields must be provided.
 * If no fields are modified, the command will be rejected.
 * Existing values will be updated to the input values.
 * **Note:** This command can be used to add a circle or a followup date if there isn't one yet.
-* Notes cannot be edited using the `edit` command, see [Note Add](#add-notes-to-a-Contact--note) and [Note Clear](#clear-a-Contacts-notes--noteclear) for notes management.
+* Notes cannot be edited using the `edit` command, see [Note Add](#add-notes-to-a-contact--note) and [Note Clear](#clear-a-contacts-notes--noteclear) for notes management.
 * Refer to [Field Constraints Summary](#field-constraints-summary) for a summary of the field constraints.
 * After a successful edit, the app will return to the full contact list.
 
@@ -194,13 +194,13 @@ To prevent this, ensure all prefixes are valid and separated by spaces.
 
 #### Editing Tags
 
-* You can remove all the Contact's tags by typing `t/` without specifying any tags after it.
+* You can remove all the contact's tags by typing `t/` without specifying any tags after it.
 * You can input multiple tags under the `edit` command. Each tag should have its own `t/` prefix.
 * If you want to add or remove specific tags one at a time, use [`tagadd`](#adding-a-tag--tagadd) or [`tagrm`](#removing-a-tag--tagrm) instead.
 
 <div markdown="span" class="alert alert-warning">
 
-**Warning:** Editing tags will replace **all** existing tags. Make sure to include all the tags you want the Contact to have
+**Warning:** Editing tags will replace **all** existing tags. Make sure to include all the tags you want the contact to have
 when using `edit`.<br>
 Example:
 A contact initially has the tags `friend` and `colleague`. After you run `edit 1 t/friend t/cafe`, only the tags `friend` and `cafe` will be displayed.
@@ -208,36 +208,36 @@ A contact initially has the tags `friend` and `colleague`. After you run `edit 1
 </div>
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com c/friend` edits the phone number, email address, and circle of the 1st Contact to be `91234567`, `johndoe@example.com`, and `friend` respectively.
-* `edit 2 n/Betsy Crower t/` edits the name of the 2nd Contact to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 e/johndoe@example.com c/friend` edits the phone number, email address, and circle of the 1st contact to be `91234567`, `johndoe@example.com`, and `friend` respectively.
+* `edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Locating Contacts by name: `find`
+### Locating contacts by name: `find`
 
-Finds Contacts whose names contain any of the given keywords.
+Finds contacts whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive, so `hans` will match `Hans`.
 * Keywords can be in any order, so `Hans Bo` will match `Bo Hans`.
 * Only full words are matched, so `Han` will not match `Hans`.
-* Contacts matching at least one keyword will be returned, so `find Hans Bo` will return both `Hans Gruber` and `Bo Yang`.
+* contacts matching at least one keyword will be returned, so `find Hans Bo` will return both `Hans Gruber` and `Bo Yang`.
 * Only the name field is searched.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find david irfan` returns `David Li`, `Irfan Ibrahim`
 
-### Viewing a Contact : `view`
+### Viewing a contact : `view`
 
-Shows the all fields from a specified Contact.
+Shows the all fields from a specified contact.
 
 Format: `view INDEX`
 
-* Shows the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Shows the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 
 Examples:
-* `list` followed by `view 2` shows the 2nd Contact in the address book.
-* `find Betsy` followed by `view 1` shows the 1st Contact in the results of the `find` command.
+* `list` followed by `view 2` shows the 2nd contact in the address book.
+* `find Betsy` followed by `view 1` shows the 1st contact in the results of the `find` command.
 
 ### View Mode
 
@@ -258,35 +258,35 @@ While in View Mode:
 
 </div>
 
-### Deleting a Contact : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified Contact from the address book.
+Deletes the specified contact from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of Contacts.
+* Deletes the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * A **confirmation message** will be shown before deletion. You will need to click `OK` to confirm the deletion. This action is irreversible.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd Contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st Contact in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 ### Adding a tag : `tagadd`
 
-Adds a tag to an existing Contact in the address book, one at a time.
+Adds a tag to an existing contact in the address book, one at a time.
 
 Format: `tagadd INDEX t/TAG`
 
-* Adds a tag to the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Adds a tag to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 tag can be added at a time. `tagadd INDEX t/tag t/tag2` will not work.
 * Creates the tag if it does not already exist.
 * For each contact, tag names must be unique and is case-insensitive, e.g. `t/camp` and `t/Camp` will be considered the same tag.
-* A Contact can have a maximum of 5 tags. If the Contact already has 5 tags, any additional tag will not be added.
+* A contact can have a maximum of 5 tags. If the contact already has 5 tags, any additional tag will not be added.
 
 Examples:
-* `tagadd 1 t/camp` adds the tag `camp` to the 1st Contact in the address book.
+* `tagadd 1 t/camp` adds the tag `camp` to the 1st contact in the address book.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -296,19 +296,19 @@ Examples:
 
 ### Removing a tag : `tagrm`
 
-Removes a tag from an existing Contact in the address book, one at a time.
+Removes a tag from an existing contact in the address book, one at a time.
 
 Format: `tagrm INDEX t/TAG`
 
-* Removes a tag from the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Removes a tag from the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 tag can be removed at a time. `tagrm INDEX t/tag t/tag2` will not work.
 * Tag names are case-insensitive, e.g. `tagrm INDEX t/Camp` and `tagrm INDEX t/camp` will both refer to the same tag name.
-* Removes the tag if it exists for the Contact.
+* Removes the tag if it exists for the contact.
 * If the tag does not exist, the deletion of the tag will not be allowed.
 
 Examples:
-* `tagrm 1 t/camp` removes the tag `camp` from the 1st Contact in the address book.
+* `tagrm 1 t/camp` removes the tag `camp` from the 1st contact in the address book.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -316,18 +316,18 @@ Examples:
 
 </div>
 
-### Add notes to a Contact : `note`
+### Add notes to a contact : `note`
 
-Adds a note to an existing Contact in the address book.
+Adds a note to an existing contact in the address book.
 
 Format: `note INDEX note/NOTE`
 
-* Adds a note to the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Adds a note to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * All text after `note/` will be treated as content for the note, including spaces and slashes.
 * Blank notes (i.e. `note/` without any text after it) will not be added.
 * Notes will only show up after running `view`.
-* Each note entry and the total combined notes per Contact is limited to **1000 characters**. This is to ensure readability and prevent excessively long notes.
+* Each note entry and the total combined notes per contact is limited to **1000 characters**. This is to ensure readability and prevent excessively long notes.
 * Notes can only be added via the `note` command.
 
 <div markdown="span" class="alert alert-info">
@@ -338,40 +338,40 @@ which also counts toward the 1000-character limit.
 </div>
 
 Examples:
-* `note 1 note/Family of four, looking for family coverage` adds `Family of four, looking for family coverage` to the 1st Contact in the list.
-* `note 2 note/A note/B note/C` adds `A note/B note/C` to the 2nd Contact in the list.
+* `note 1 note/Family of four, looking for family coverage` adds `Family of four, looking for family coverage` to the 1st contact in the list.
+* `note 2 note/A note/B note/C` adds `A note/B note/C` to the 2nd contact in the list.
 
-### Clear a Contact's notes : `noteclear`
+### Clear a contact's notes : `noteclear`
 
-Clears all notes of a Contact in the address book.
+Clears all notes of a contact in the address book.
 
 Format: `noteclear INDEX`
 
-* Clears all notes of the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Clears all notes of the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
-* When `view`ing a Contact, their removed notes will no longer be shown.
+* When `view`ing a contact, their removed notes will no longer be shown.
 * Notes can only be cleared via the `noteclear` command.
 
 Examples:
-* `noteclear 1` clears all notes of the 1st Contact in the list.
+* `noteclear 1` clears all notes of the 1st contact in the list.
 
-### Add a circle to a Contact : `circleadd`
+### Add a circle to a contact : `circleadd`
 
-Adds a circle to an existing Contact in the address book.
+Adds a circle to an existing contact in the address book.
 A circle refers to the type of relationship the user has with the contact.
 
 Format: `circleadd INDEX c/CIRCLE`
 
-* Adds a circle to the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Adds a circle to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle is case-insensitive, but must be one of these 3 values. Any other value given to `circleadd` will be rejected.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 circle can be added at a time to 1 contact.
-* If the Contact already has a circle, the addition of the circle will not be allowed.
+* If the contact already has a circle, the addition of the circle will not be allowed.
 * **Note:** A circle can only be added via the `circleadd` and `edit` commands, but not the `add` command.
 
 Examples:
-* `circleadd 1 c/client` adds the circle `client` to the 1st Contact in the address book.
-* `circleadd 2 c/prospect` adds the circle `prospect` to the 2nd Contact in the address book.
+* `circleadd 1 c/client` adds the circle `client` to the 1st contact in the address book.
+* `circleadd 2 c/prospect` adds the circle `prospect` to the 2nd contact in the address book.
 * `circleadd 3 c/family` will lead to an error message as `family` is not an accepted circle type.
 
 <div markdown="span" class="alert alert-primary">
@@ -380,30 +380,30 @@ Examples:
 
 </div>
 
-### Remove a circle from a Contact : `circlerm`
+### Remove a circle from a contact : `circlerm`
 
-Removes a circle from an existing Contact in the address book.
+Removes a circle from an existing contact in the address book.
 A circle refers to the type of relationship the user has with the contact.
 
 Format: `circlerm INDEX`
 
-* Removes the circle from the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Removes the circle from the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Removes the existing circle from the specified contact.
-* If the Contact does not have a circle, deletion of circle will not be allowed.
-* To change an existing circle to a different one, use `edit INDEX c/CIRCLE`. Refer to [Editing a Contact](#editing-a-Contact--edit) for details.
+* If the contact does not have a circle, deletion of circle will not be allowed.
+* To change an existing circle to a different one, use `edit INDEX c/CIRCLE`. Refer to [Editing a contact](#editing-a-contact--edit) for details.
 
 Examples:
-* `circlerm 1` removes the circle from the 1st Contact in the address book, regardless of the circle.
+* `circlerm 1` removes the circle from the 1st contact in the address book, regardless of the circle.
 
 ### Filter for a circle : `circlefilter`
 
-Filters and shows all Contacts in the address book with the specified circle.
+Filters and shows all contacts in the address book with the specified circle.
 A circle refers to the type of relationship the user has with the contact.
 
 Format: `circlefilter CIRCLE`
 
-* All Contacts with the specified circle will be shown in their index order in the address book.
+* All contacts with the specified circle will be shown in their index order in the address book.
 * There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle is case-insensitive, but must be one of these 3 values. Any other value given to `circlefilter` will be rejected.
 * **Note:** Circles can only be filtered via the `circlefilter` command.
 :information_source: **Note:* Circles can only be filtered via the `circlefilter` command.
@@ -415,7 +415,7 @@ Format: `circlefilter CIRCLE`
 </div>
 
 Examples:
-* `circlefilter client` shows all Contacts with the circle `client` in the address book, in their index order in the
+* `circlefilter client` shows all contacts with the circle `client` in the address book, in their index order in the
   address book.
 * `circlefilter family` will lead to an error message as `family` is not an accepted circle type.
 
@@ -425,7 +425,7 @@ Sets or updates the follow-up date for a contact.
 
 Format: `followup INDEX d/DATE`
 
-* Sets the follow-up date for the contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Sets the follow-up date for the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * `DATE` must be in the format `YYYY-MM-DD` (e.g. `2026-04-01`).
 * Past dates are allowed, but the app will show a warning after the date is set.
@@ -446,7 +446,7 @@ Clears the follow-up date of a contact.
 
 Format: `followupclear INDEX`
 
-* Clears the follow-up date of the Contact at the specified `INDEX`. The index refers to the index number shown in the displayed Contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of Contacts.
+* Clears the follow-up date of the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 
 :information_source: **Note:** A follow-up date can only be removed via the `followupclear` command.
@@ -456,18 +456,18 @@ Examples:
 
 ### Listing upcoming follow-ups : `remind`
 
-Lists all Contacts whose follow-up dates fall within the next specified number of days, inclusive of today.
+Lists all contacts whose follow-up dates fall within the next specified number of days, inclusive of today.
 
 Format: `remind DAYS`
 
-* Shows Contacts with follow-up dates from today up to `DAYS` days ahead.
+* Shows contacts with follow-up dates from today up to `DAYS` days ahead.
 * `DAYS` **must be a positive integer**.
-* Contacts without a follow-up date will not be shown.
+* contacts without a follow-up date will not be shown.
 
 Examples:
-* `remind 1` lists all Contacts with follow-up dates today or tomorrow.
-* `remind 3` lists all Contacts with follow-up dates within the next 3 days.
-* `remind 7` lists all Contacts with follow-up dates within the next 7 days.
+* `remind 1` lists all contacts with follow-up dates today or tomorrow.
+* `remind 3` lists all contacts with follow-up dates within the next 3 days.
+* `remind 7` lists all contacts with follow-up dates within the next 7 days.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -534,7 +534,7 @@ until the file has been fixed.
 **A**: In View Mode, only the selected contact remains in the filtered list, so commands that require an index must use `1`.
 
 **Q**: Why is a contact not shown in `remind`? <br>
-**A**: Only Contacts with a follow-up date are shown by `remind`.
+**A**: Only contacts with a follow-up date are shown by `remind`.
 
 **Q**: What's the difference between `tag` and `circle`? <br>
 **A**: A tag is a flexible label that you can create and use however you like. A circle is a single label that represents the type of relationship you have with the contact. A contact can have multiple tags but only one circle.
@@ -558,7 +558,7 @@ until the file has been fixed.
 
 | Field | Required | Format / Value                                                                                                                                                             | Unique* | Modifiable | Removable | Notes                                                                               |
 |------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|------------|------------|-------------------------------------------------------------------------------------|
-| **Name** | Yes | Must start with a letter or digit, contain at least one letter, and only consist of alphanumeric characters, spaces or the following symbols: `-`, `'`, `.`, `/`, `(`, `)` | No      | Yes | No | Can be duplicated across Contacts                                                   |
+| **Name** | Yes | Must start with a letter or digit, contain at least one letter, and only consist of alphanumeric characters, spaces or the following symbols: `-`, `'`, `.`, `/`, `(`, `)` | No      | Yes | No | Can be duplicated across contacts                                                   |
 | **Phone Number** | Yes | Numbers only, at least 3 and at most 17 digits                                                                                                                             | Yes     | Yes | No | Each contact can have only one phone number                                         |
 | **Email** | No | Valid email format                                                                                                                                                         | Yes     | Yes | No | Optional when adding, but cannot be removed once added                              |
 | **Address** | No | Accepts any value                                                                                                                                                          | No      | Yes | No | Optional when adding, but cannot be removed once added                              |
@@ -569,7 +569,7 @@ until the file has been fixed.
 
 <div markdown="span" class="alert alert-info">
 
-*Note: Unique means the value cannot be duplicated across different Contacts.
+*Note: Unique means the value cannot be duplicated across different contacts.
 
 </div>
 
@@ -596,5 +596,7 @@ Action | Format, Examples
 **Follow Up Clear** | `followupclear INDEX` <br> e.g. `followupclear 1`
 **Remind** | `remind DAYS` <br> e.g. `remind 3`
 **Exit** | `exit`
+
+
 
 
