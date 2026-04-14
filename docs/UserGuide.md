@@ -163,8 +163,7 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [d/FOLLOWUPDATE] [c/CIRCLE]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
-* The index **must be a positive integer** `1, 2, 3, …`
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * At least one of the optional fields must be provided. 
 * If no fields are modified, the command will be rejected.
@@ -221,9 +220,7 @@ Shows the specified person.
 
 Format: `view INDEX`
 
-* Shows the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** `1, 2, 3, …`
+* Shows the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 
 Examples:
 * `list` followed by `view 2` shows the 2nd person in the address book.
@@ -244,7 +241,7 @@ While in View Mode:
 
 <div markdown="span" class="alert alert-primary">
 
- :bulb: **Tip:** To view a different contact, run `list` first, then `view` on the desired index.
+:bulb: **Tip:** To view a different contact, run `list` first, then `view` on the desired index.
 
 </div>
 
@@ -254,9 +251,7 @@ Deletes the specified contact from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the number shown beside your contact's name.
-* The index **must be a positive integer** (e.g. `1, 2, 3, ...`) and be within the valid range of contacts.
+* Deletes the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`  and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * A **confirmation message** will be shown before deletion. You will need to click `OK` to confirm the deletion.
 
@@ -270,7 +265,7 @@ Adds a tag to an existing person in the address book, one at a time.
 
 Format: `tagadd INDEX t/TAG`
 
-* Adds a tag to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list and **must be a positive integer** `1, 2, 3, …`
+* Adds a tag to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 tag can be added at a time. `t/tag t/tag2` will not work.
 * Creates the tag if it does not already exist.
@@ -292,7 +287,7 @@ Removes a tag from an existing person in the address book, one at a time.
 
 Format: `tagrm INDEX t/TAG`
 
-* Removes a tag from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Removes a tag from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 tag can be removed at a time. `t/tag t/tag2` will not work.
 * Removes the tag if it exists for the person.
@@ -313,7 +308,7 @@ Adds a note to an existing person in the address book.
 
 Format: `note INDEX note/NOTE`
 
-* Adds a note to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Adds a note to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * All text after `note/` will be treated as content for the note, including spaces and slashes.
 * Blank notes (i.e. `note/` without any text after it) will not be added.
@@ -329,7 +324,7 @@ which also counts toward the 1000-character limit.
 
 Examples:
 * `note 1 note/Family of four, looking for family coverage` adds `Family of four, looking for family coverage` to the 1st person in the list.
-* `note 2 note/A note/B note/C` adds `note/A note/B note/C` to the 2nd person in the list.
+* `note 2 note/A note/B note/C` adds `A note/B note/C` to the 2nd person in the list.
 
 ### Clear a person's notes : `noteclear`
 
@@ -337,7 +332,7 @@ Clears all notes of a person in the address book.
 
 Format: `noteclear INDEX`
 
-* Clears all notes of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Clears all notes of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * When `view`ing a person, their removed notes will no longer be shown.
 
@@ -351,11 +346,11 @@ A circle refers to the type of relationship the user has with the contact.
 
 Format: `circleadd INDEX c/CIRCLE`
 
-* The circle will be added to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Adds a circle to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle must be one of these 3 types. Any other value given to `circleadd` will be rejected.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
-* Only 1 circle can be added at a time to 1 contact.
-* If the person already has a circle, the addition of the circle will not be allowed.
+* A contact can only have 1 circle at a time.
+* If the person already has a circle, addition of a circle will not be allowed.
 * Note: A circle can only be added via the `circleadd` and `edit` commands, but not the `add` command.
 
 Examples:
@@ -376,13 +371,10 @@ A circle refers to the type of relationship the user has with the contact.
 
 Format: `circlerm INDEX`
 
-* The circle will be removed from the person at the specified `INDEX`. The index refers to the index number shown in 
-the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Removes the circle from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Only 1 circle can be removed at a time from 1 contact.
-* If the person does not have a circle, the deletion of the circle will not be allowed.
-* To edit an existing circle, you will need to first remove the existing circle using the `circlerm` command, and then 
-add the new circle using the `circleadd` command.
+* If the person does not have a circle, deletion of circle will not be allowed.
 
 Examples:
 * `circlerm 1` removes the circle from the 1st person in the address book, regardless of the circle.
@@ -401,7 +393,7 @@ Any other value given to `circlefilter` will be rejected.
 
 <div markdown="span" class="alert alert-primary">
 
-**Tip:** To return to the original view, simply type `list`.
+:bulb: **Tip:** To return to the original view, simply type `list`.
 
 </div>
 
@@ -416,8 +408,7 @@ Sets or updates the follow-up date for a contact.
 
 Format: `followup INDEX d/DATE`
 
-* Sets the follow-up date for the contact at the specified `INDEX`. The index refers to the index number shown in the 
-displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* Sets the follow-up date for the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * `DATE` must be in the format `YYYY-MM-DD` (e.g. `2026-04-01`).
 * Past dates are allowed, but the app will show a warning after the date is set.
@@ -438,9 +429,7 @@ Clears the follow-up date of a contact.
 
 Format: `followupclear INDEX`
 
-* Clears the follow-up date of the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** `1, 2, 3, …`
+* Clears the follow-up date of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * Note: A follow-up date can only be removed via the `followupclear` command.
 
@@ -464,7 +453,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 
-**Tip:** To return to the original view, simply type `list`.
+:bulb: **Tip:** To return to the original view, simply type `list`.
 
 </div>
 
