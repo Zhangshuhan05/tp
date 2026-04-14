@@ -9,7 +9,7 @@ title: Friends and Money (FAM)
 ![Ui](images/Ui.png)
 
 **FAM is a desktop contact management app built for student financial advisors.** It helps you track your relationships,
-log interactions and schedule follow-ups in one place. While it has a GUI, most of the user interactions happen using a 
+log interactions and schedule follow-ups in one place. While it has a GUI, most of the user interactions happen using a
 CLI (Command Line Interface).
 
 * If you are interested in using FAM, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
