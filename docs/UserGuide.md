@@ -497,7 +497,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-* A **confirmation message** will be shown before clearing of all contacts. You will need to click `OK` to confirm the execution. This action is irreversible.
+* A **confirmation message** will be shown before the clearing of all contacts. You will need to click `OK` to confirm the execution. This action is irreversible.
 
 ### Exiting the program : `exit`
 
