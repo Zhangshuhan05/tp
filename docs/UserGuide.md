@@ -276,6 +276,9 @@ Examples:
 
 Adds a tag to an existing contact in the address book, one at a time.
 
+
+![tagadd command](images/TagAdd.png)
+
 Format: `tagadd INDEX t/TAG`
 
 * Adds a tag to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** `1, 2, 3, …` and be within the valid range of the current displayed list of contacts.
@@ -359,6 +362,8 @@ Examples:
 
 Adds a circle to an existing contact in the address book.
 A circle refers to the type of relationship the user has with the contact.
+
+![circleadd command](images/CircleAdd.png)
 
 Format: `circleadd INDEX c/CIRCLE`
 
