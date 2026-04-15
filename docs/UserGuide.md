@@ -267,7 +267,7 @@ Format: `delete INDEX`
 * In [view mode](#view-mode), the index of the displayed contact is always `1`.
 * A **confirmation message** will be shown before deletion. You will need to click `OK` to confirm the deletion. This action is irreversible.
 
-![Delete confirmation](images/DeleteConfirmation.png)
+![Delete confirmation](images/DeleteConfirmMsg.png)
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
